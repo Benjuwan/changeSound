@@ -1,0 +1,34 @@
+[
+    {
+        "signal": "01",
+        "src": "mother"
+    },
+    {
+        "signal": "02",
+        "src": "father"
+    },
+    {
+        "signal": "03",
+        "src": "grand-mother"
+    },
+    {
+        "signal": "04",
+        "src": "grand-father"
+    },
+    {
+        "signal": "05",
+        "src": "uncle"
+    },
+    {
+        "signal": "06",
+        "src": "aunt"
+    },
+    {
+        "signal": "07",
+        "src": "anima-char-001"
+    },
+    {
+        "signal": "08",
+        "src": "anima-char-002"
+    }
+]

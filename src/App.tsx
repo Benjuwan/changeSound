@@ -1,0 +1,10 @@
+import { Contents } from "./Contents";
+export const App = () => {
+  return (
+    <>
+      <p>再生するサウンドを「お母さんやお父さん、おじいちゃんの声」や「アニメキャラクターの声」に？</p>
+      <Contents />
+      <p style={{ "textAlign": "center", "fontSize": "10px" }}><small>『音楽：魔王魂』</small></p>
+    </>
+  );
+}
