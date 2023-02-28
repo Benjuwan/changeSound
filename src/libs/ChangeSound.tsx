@@ -6,7 +6,7 @@ import changeSound from '../../src/assets/changesound.mp3';
 import { TheContext } from "./TheContext";
 
 export const ChangeSound = memo(() => {
-    const { setPlaySound } = useContext(TheContext);
+    const { isGetFetchDates, setPlaySound } = useContext(TheContext);
     const { CreateAudioEls } = useCreateAudioEls();
 
     const clickSound = (
@@ -31,7 +31,12 @@ export const ChangeSound = memo(() => {
 
     return (
         <ChangeSoundBtn type="button" onClick={(e) => {
-            CreateAudioEls('#soundsSec', 8);
+            /* Math.random()は、0 以上 1 未満 (0 は含むが、 1 は含まない) なので jsonのデータ数（isGetFetchDates.length）+1 で指定 */
+            CreateAudioEls(
+                '#soundsSec',
+                '#soundsSec audio',
+                isGetFetchDates.length + 1
+            );
             clickSound(e.currentTarget);
             addClassMethod(e.currentTarget);
             setPlaySound(false);
