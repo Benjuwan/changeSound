@@ -1,15 +1,13 @@
-import { useContext } from "react";
+import { memo, useContext } from "react";
 import styled from "styled-components";
 import { useCreateAudioEls } from "../hooks/useCreateAudioEls";
 
 import changeSound from '../../src/assets/changesound.mp3';
 import { TheContext } from "./TheContext";
 
-export const ChangeSound = () => {
+export const ChangeSound = memo(() => {
     const { setPlaySound } = useContext(TheContext);
-
     const { CreateAudioEls } = useCreateAudioEls();
-    CreateAudioEls('#soundsSec', 8);
 
     const clickSound = (
         btnEl: HTMLButtonElement
@@ -42,7 +40,7 @@ export const ChangeSound = () => {
             <audio src={changeSound}></audio>
         </ChangeSoundBtn>
     );
-}
+});
 
 const ChangeSoundBtn = styled.button`
 cursor: pointer;
