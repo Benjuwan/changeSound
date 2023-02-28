@@ -37,14 +37,26 @@
     },
     {
         "signal": "07",
-        "src": "anima-char-001",
-        "hiragana": "うさぎさん",
-        "kanji": "兎さん"
+        "src": "rabbit",
+        "hiragana": "うさぎ さん",
+        "kanji": "兎 さん"
     },
     {
         "signal": "08",
-        "src": "anima-char-002",
-        "hiragana": "きんのぶたさん",
-        "kanji": "金の豚さん"
+        "src": "pig",
+        "hiragana": "きんのぶた さん",
+        "kanji": "金の豚 さん"
+    },
+    {
+        "signal": "09",
+        "src": "dog",
+        "hiragana": "いぬ さん",
+        "kanji": "犬 さん"
+    },
+    {
+        "signal": "10",
+        "src": "tiger",
+        "hiragana": "とら",
+        "kanji": "寅 さん"
     }
 ]
