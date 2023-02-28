@@ -1,34 +1,50 @@
 [
     {
         "signal": "01",
-        "src": "mother"
+        "src": "mother",
+        "hiragana": "おかあさん",
+        "kanji": "お母さん"
     },
     {
         "signal": "02",
-        "src": "father"
+        "src": "father",
+        "hiragana": "おとうさん",
+        "kanji": "お父さん"
     },
     {
         "signal": "03",
-        "src": "grand-mother"
+        "src": "grand-mother",
+        "hiragana": "おばあちゃん",
+        "kanji": "お婆ちゃん"
     },
     {
         "signal": "04",
-        "src": "grand-father"
+        "src": "grand-father",
+        "hiragana": "おじいちゃん",
+        "kanji": "お爺ちゃん"
     },
     {
         "signal": "05",
-        "src": "uncle"
+        "src": "uncle",
+        "hiragana": "おじさん",
+        "kanji": "叔父さん"
     },
     {
         "signal": "06",
-        "src": "aunt"
+        "src": "aunt",
+        "hiragana": "おばさん",
+        "kanji": "叔母さん"
     },
     {
         "signal": "07",
-        "src": "anima-char-001"
+        "src": "anima-char-001",
+        "hiragana": "うさぎさん",
+        "kanji": "兎さん"
     },
     {
         "signal": "08",
-        "src": "anima-char-002"
+        "src": "anima-char-002",
+        "hiragana": "きんのぶたさん",
+        "kanji": "金の豚さん"
     }
 ]

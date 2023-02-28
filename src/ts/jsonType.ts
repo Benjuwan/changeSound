@@ -1,4 +1,6 @@
 export type jsonType = {
     signal: number
-    src: string
+    src: string,
+    hiragana: string,
+    kanji: string
 }

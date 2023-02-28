@@ -1,49 +1,31 @@
-import { useContext } from "react";
+import { memo, useContext } from "react";
 import styled from "styled-components";
-import { useFetchApi } from "../hooks/useFetchApi";
 import { TheContext } from "./TheContext";
+import { useFetchApi } from "../hooks/useFetchApi";
+import { useRingForSound } from "../hooks/useRingForSound";
+import { useSetImgAndTxt } from "../hooks/useSetImgAndTxt";
 
-export const PlaySound = () => {
-    const { isGetFetchDates, isPlaySound } = useContext(TheContext);
+export const PlaySound = memo(() => {
+    const { isPlaySound } = useContext(TheContext);
     const { FetchApi } = useFetchApi();
     FetchApi(`${location.origin}/public/json/imgAltTxt.json`);
+    const { RingForSound } = useRingForSound();
+    const { SetImgAndTxt } = useSetImgAndTxt();
 
-    /* サウンド再生 */
-    const playSounds = () => {
-        const targetAudioEl = document.querySelector<HTMLAudioElement>('#soundsSec audio');
-        if (targetAudioEl !== null) {
-            targetAudioEl.volume = 1;
-            targetAudioEl.currentTime = 0.05; // 音源の再生開始位置の指定（アクションボタン連打への対応）
-            targetAudioEl.play();
-        }
-    }
-
-    /* クリックした時の処理（サウンド再生及び画像ファイルの読込） */
     const actionClickEvent = () => {
-        const charImg = document.querySelector('#charImg');
-        const actionBtn = document.querySelector('#actionBtn');
-        if (actionBtn !== null) {
-            const soundSrc = actionBtn.getAttribute('src');
-            if (soundSrc !== null) {
-                actionBtn.setAttribute('src', soundSrc);
-            }
-            playSounds();
-        }
+        /* サウンド（音声データ）再生 */
+        RingForSound('#soundsSec audio');
 
-        /* 画像ファイルの読込：画像を表示する場合の処理 */
-        const targetAudioEl = document.querySelector<HTMLAudioElement>('#soundsSec audio')
-        const targetAudioElNum = targetAudioEl?.getAttribute('src')?.split('-')[1].split('.')[0];
-        if (targetAudioElNum !== undefined) {
-            charImg?.setAttribute('src', `${location.origin}/public/img/img-${targetAudioElNum}.png`);
-            isGetFetchDates.forEach((data, i) => {
-                if (i === Number(targetAudioElNum)) {
-                    charImg?.setAttribute('alt', `No.${data.signal}：${data.src}`);
-                }
-            });
-        }
+        /* 音声データに準拠した画像と説明文をセット */
+        SetImgAndTxt('#soundsSec audio', '#charImg', '#charTxt');
 
         /* ボタンクリックでスクロールトップ */
         window.scrollTo(0, 0);
+
+        if (window.matchMedia("(min-width: 640px)").matches) {
+            const contentsWrapper = document.querySelector<HTMLElement>('#contentsWrapper');
+            contentsWrapper?.classList.add('appStart');
+        }
     }
 
     return (
@@ -52,7 +34,7 @@ export const PlaySound = () => {
                 actionClickEvent();
             }}>PlaySound</PlaySoundBtn>
     );
-}
+});
 
 const PlaySoundBtn = styled.button`
 display: block;
