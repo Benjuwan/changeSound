@@ -48,6 +48,7 @@ export const ChangeSound = memo(() => {
 });
 
 const ChangeSoundBtn = styled.button`
+margin: 0 auto 1em;
 cursor: pointer;
 display: block;
 appearance: none;
@@ -78,6 +79,12 @@ position: relative;
 }
 
 &.OnClicked{
+    margin-bottom: 80px;
+
+    @media screen and (min-width: 700px){
+        margin-bottom: 160px;
+    }
+
     &::after{
         transition: opacity .25s, visibility .25s, transform .5s;
         transform: translate(-50%, 16%);

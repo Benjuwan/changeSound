@@ -22,6 +22,7 @@ export const PlaySound = memo(() => {
         /* ボタンクリックでスクロールトップ */
         window.scrollTo(0, 0);
 
+        /* 640px以上（タブレット・PC）では flexitem にする class を付与 */
         if (window.matchMedia("(min-width: 640px)").matches) {
             const contentsWrapper = document.querySelector<HTMLElement>('#contentsWrapper');
             contentsWrapper?.classList.add('appStart');
@@ -37,6 +38,7 @@ export const PlaySound = memo(() => {
 });
 
 const PlaySoundBtn = styled.button`
+margin: auto;
 display: block;
 appearance: none;
 outline: none;
