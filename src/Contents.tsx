@@ -20,7 +20,8 @@ export const Contents = memo(() => {
 });
 
 const ContentsWrapper = styled.main`
-padding: 5em 2.5em calc(100vw/3);
+padding: 0 2.5em calc(100vw/3);
+
     & figure{
         width: clamp(160px, calc(100vw/2), 560px);
         margin: 0 auto 2em;
@@ -51,11 +52,6 @@ padding: 5em 2.5em calc(100vw/3);
         & button{
             font-size: clamp(16px, calc(100vw/56), 24px);
             width: clamp(80px, calc(100vw/2), 560px);
-            margin: auto;
-    
-            &:first-of-type{
-                margin-bottom: 80px;
-            }
     
             &:not([disabled]){
                 &:hover{
@@ -81,12 +77,13 @@ padding: 5em 2.5em calc(100vw/3);
 @media screen and (min-width: 700px){
     max-width: 640px;
     margin: auto;
-    padding: 80px 2.5em 160px;
+    padding: 0 2.5em 160px;
 
     &.appStart {
         display: flex;
         justify-content: space-between;
         gap: 5%;
+        padding-top: 2em;
     }
 
     & .btnContainer button,
@@ -94,14 +91,6 @@ padding: 5em 2.5em calc(100vw/3);
         width: 100%;
         max-width: 640px;
         font-size: 24px;
-    }
-
-    & .btnContainer{
-        & button{
-            &:first-of-type{
-                margin-bottom: 160px;
-            }
-        }
     }
 }
 `;
