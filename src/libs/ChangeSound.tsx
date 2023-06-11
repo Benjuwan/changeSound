@@ -2,9 +2,9 @@ import { memo, useContext } from "react";
 import styled from "styled-components";
 import { TheContext } from "./TheContext";
 import { useCreateAudioEls } from "../hooks/useCreateAudioEls";
+import { useBackToDefault } from "../hooks/useBackToDefault";
 
 import changeSound from '../../src/assets/changesound.mp3';
-import { useBackToDefault } from "../hooks/useBackToDefault";
 
 export const ChangeSound = memo(() => {
     const {
