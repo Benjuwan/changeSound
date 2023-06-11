@@ -1,16 +1,20 @@
-import { memo, useContext, useEffect, useState } from "react";
+import { memo, useContext, useEffect } from "react";
 import styled from "styled-components";
 import { TheContext } from "./TheContext";
 import { useRingForSound } from "../hooks/useRingForSound";
 import { useSetImgAndTxt } from "../hooks/useSetImgAndTxt";
 import { useFetchApi } from "../hooks/useFetchApi";
+import { useBackToDefault } from "../hooks/useBackToDefault";
 
 export const PlaySound = memo(() => {
-    const [isAudioPlay, setAudioPlay] = useState<boolean>(false);
-
-    const { isGetDateType, isPlaySound } = useContext(TheContext);
+    const {
+        isGetDateType,
+        isPlaySound,
+        isAudioPlay, setAudioPlay,
+    } = useContext(TheContext);
     const { RingForSound } = useRingForSound();
     const { SetImgAndTxt } = useSetImgAndTxt();
+    const { BackToDefault } = useBackToDefault();
 
     const { FetchApi } = useFetchApi();
     useEffect(() => {
@@ -21,11 +25,12 @@ export const PlaySound = memo(() => {
     const audioEl: HTMLAudioElement | null = document.querySelector('#soundsSec audio');
     audioEl?.addEventListener('ended', () => {
         setAudioPlay(false);
+        BackToDefault();
     });
 
     const actionClickEvent = () => {
         /* サウンド（音声データ）再生 */
-        RingForSound('#soundsSec audio', setAudioPlay);
+        RingForSound('#soundsSec audio');
 
         /* 音声データに準拠した画像と説明文をセット */
         SetImgAndTxt('#soundsSec audio', '#charImg', '#charTxt');
