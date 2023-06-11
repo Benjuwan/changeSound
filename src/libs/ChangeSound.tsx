@@ -1,12 +1,16 @@
 import { memo, useContext } from "react";
 import styled from "styled-components";
+import { TheContext } from "./TheContext";
 import { useCreateAudioEls } from "../hooks/useCreateAudioEls";
 
 import changeSound from '../../src/assets/changesound.mp3';
-import { TheContext } from "./TheContext";
 
 export const ChangeSound = memo(() => {
-    const { isGetFetchDates, setPlaySound } = useContext(TheContext);
+    const {
+        isGetFetchDates,
+        isPlaySound, setPlaySound,
+    } = useContext(TheContext);
+
     const { CreateAudioEls } = useCreateAudioEls();
 
     const clickSound = (
@@ -31,17 +35,16 @@ export const ChangeSound = memo(() => {
 
     return (
         <ChangeSoundBtn type="button" onClick={(e) => {
-            /* Math.random()は、0 以上 1 未満 (0 は含むが、 1 は含まない) なので jsonのデータ数（isGetFetchDates.length）+1 で指定 */
             CreateAudioEls(
                 '#soundsSec',
                 '#soundsSec audio',
-                isGetFetchDates.length + 1
+                isGetFetchDates.length
             );
             clickSound(e.currentTarget);
             addClassMethod(e.currentTarget);
             setPlaySound(false);
         }}>
-            ChangeSound
+            {isPlaySound ? 'StartSound' : 'ChangeSound'}
             <audio src={changeSound}></audio>
         </ChangeSoundBtn>
     );
@@ -58,7 +61,7 @@ border-radius: 8px;
 letter-spacing: .25em;
 background-color: #00ff00;
 border-bottom: 5px solid #008100;
-line-height: 80px;
+line-height: 8rem;
 position: relative;
 
 &::after{
@@ -81,10 +84,6 @@ position: relative;
 &.OnClicked{
     margin-bottom: 80px;
 
-    @media screen and (min-width: 700px){
-        margin-bottom: 160px;
-    }
-
     &::after{
         transition: opacity .25s, visibility .25s, transform .5s;
         transform: translate(-50%, 16%);
@@ -95,5 +94,13 @@ position: relative;
 
 & audio{
     display: none;
+}
+
+@media screen and (min-width: 700px) {
+    line-height: 80px;
+    
+    &.OnClicked {
+        margin-bottom: 160px;
+    }
 }
 `;

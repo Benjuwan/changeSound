@@ -1,5 +1,6 @@
 import { memo } from "react";
 import styled from "styled-components";
+import { SelectDate } from "./libs/SelectDate";
 import { ChangeSound } from "./libs/ChangeSound";
 import { PlaySound } from "./libs/PlaySound";
 
@@ -11,6 +12,7 @@ export const Contents = memo(() => {
                 <div id="charTxt"></div>
             </figure>
             <div className="btnContainer">
+                <SelectDate />
                 <ChangeSound />
                 <PlaySound />
             </div>
@@ -23,11 +25,11 @@ const ContentsWrapper = styled.main`
 padding: 0 2.5em calc(100vw/3);
 
     & figure{
-        width: clamp(160px, calc(100vw/2), 560px);
+        width: clamp(16rem, calc(100vw/2), 56rem);
         margin: 0 auto 2em;
 
         & #charTxt{
-            font-size: 20px;
+            font-size: 2rem;
             letter-spacing: .25em;
             margin-bottom: 2.5em;
 
@@ -42,7 +44,7 @@ padding: 0 2.5em calc(100vw/3);
                 & span{
                     text-indent: -1em;
                     display: block;
-                    font-size: 14px;
+                    font-size: 1.4rem;
                 }
             }
         }
@@ -51,7 +53,7 @@ padding: 0 2.5em calc(100vw/3);
     & .btnContainer{
         & button{
             font-size: clamp(16px, calc(100vw/56), 24px);
-            width: clamp(80px, calc(100vw/2), 560px);
+            width: 100%;
     
             &:not([disabled]){
                 &:hover{
@@ -91,6 +93,18 @@ padding: 0 2.5em calc(100vw/3);
         width: 100%;
         max-width: 640px;
         font-size: 24px;
+    }
+
+    & figure{
+        & #charTxt{
+            font-size: 20px;
+
+            & p{
+                & span{
+                    font-size: 14px;
+                }
+            }
+        }
     }
 }
 `;

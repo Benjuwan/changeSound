@@ -1,0 +1,38 @@
+[
+    {
+        "signal": "01",
+        "english": "mother",
+        "hiragana": "おかあさん",
+        "kanji": "お母さん"
+    },
+    {
+        "signal": "02",
+        "english": "father",
+        "hiragana": "おとうさん",
+        "kanji": "お父さん"
+    },
+    {
+        "signal": "03",
+        "english": "grand-mother",
+        "hiragana": "おばあちゃん",
+        "kanji": "お婆ちゃん"
+    },
+    {
+        "signal": "04",
+        "english": "grand-father",
+        "hiragana": "おじいちゃん",
+        "kanji": "お爺ちゃん"
+    },
+    {
+        "signal": "05",
+        "english": "uncle",
+        "hiragana": "おじさん",
+        "kanji": "叔父さん"
+    },
+    {
+        "signal": "06",
+        "english": "aunt",
+        "hiragana": "おばさん",
+        "kanji": "叔母さん"
+    }
+]

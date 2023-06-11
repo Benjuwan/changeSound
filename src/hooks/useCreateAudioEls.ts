@@ -1,6 +1,9 @@
-import { useCallback } from "react"
+import { useCallback, useContext } from "react"
+import { TheContext } from "../libs/TheContext";
 
 export const useCreateAudioEls = () => {
+    const { isGetDateType } = useContext(TheContext);
+
     /* 所定の要素(#soundsSec)内をクリーンにして audio タグ（サウンド）をセット */
     const SetContent = useCallback((
         targetEl: HTMLElement,
@@ -14,8 +17,9 @@ export const useCreateAudioEls = () => {
         } else {
             adjustsetSrcNum = `00${setSrcNum}`;
         }
-        targetEl.insertAdjacentHTML('beforeend', `<audio src="${location.origin}/public/sounds/sounds-${adjustsetSrcNum}.mp3"}></audio>`);
-    }, []);
+        targetEl.insertAdjacentHTML('beforeend', `<audio src="${location.origin}/public/sounds/${isGetDateType}/sounds-${adjustsetSrcNum}.mp3"}></audio>`);
+    }, [isGetDateType]);
+    /* 依存配列に isGetDateType を指定して select の値が切り替わる度に当該jsonデータを読み込む */
 
     /* サウンド（音声データ）を用意するためのメイン機能 */
     const CreateAudioEls = useCallback((
@@ -32,7 +36,7 @@ export const useCreateAudioEls = () => {
 
         /* サウンド（音声データ）の src 属性に指定しているデータナンバリング（sounds-00X）を取得 */
         const targetAudioEl = document.querySelector<HTMLAudioElement>(targetAudioName);
-        const targetAudioElNum = targetAudioEl?.getAttribute('src')?.split('-')[1].split('.')[0];
+        const targetAudioElNum = targetAudioEl?.getAttribute('src')?.split('.')[0].split('sounds-')[1];
 
         const baseEl = document.querySelector<HTMLElement>(baseElName);
         if (baseEl !== null) {
@@ -41,13 +45,12 @@ export const useCreateAudioEls = () => {
                 SetContent(baseEl, randomNum);
             } else {
                 /* 音声データのデータナンバリング(targetAudioElNum)とランダム生成した数値(randomNum)が【同じ】場合は +1 して同一音声のダブりを回避 */
-                randomNum++
-                // console.log(targetAudioElNum);
-                // console.log(randomNum);
+                randomNum++;
                 SetContent(baseEl, randomNum);
             }
         }
-    }, []);
+    }, [isGetDateType]);
+    /* 依存配列に isGetDateType を指定して select の値が切り替わる度に当該jsonデータを読み込む */
 
     return { CreateAudioEls }
 }
