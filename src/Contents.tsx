@@ -57,8 +57,8 @@ padding: 0 2.5em calc(100vw/3);
     
             &:not([disabled]){
                 &:hover{
-                    transition: filter .25s;
-                    filter: sepia(1);
+                    transition: opacity .25s;
+                    opacity: .5;
                 }
         
                 &:active{
