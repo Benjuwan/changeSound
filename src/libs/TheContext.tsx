@@ -6,6 +6,8 @@ type ContextType = {
     setGetDateType: React.Dispatch<React.SetStateAction<string>>;
     isPlaySound: boolean;
     setPlaySound: React.Dispatch<React.SetStateAction<boolean>>;
+    isAudioPlay: boolean;
+    setAudioPlay: React.Dispatch<React.SetStateAction<boolean>>;
     isGetFetchDates: Array<jsonType>;
     setGetFetchDates: React.Dispatch<React.SetStateAction<jsonType[]>>;
 }
@@ -20,6 +22,8 @@ export const ContextFlagment: FC<DefaultType> = (props) => {
 
     const [isPlaySound, setPlaySound] = useState<boolean>(true);
 
+    const [isAudioPlay, setAudioPlay] = useState<boolean>(false);
+
     const [isGetFetchDates, setGetFetchDates] = useState<Array<jsonType>>([]);
 
     return (
@@ -28,6 +32,8 @@ export const ContextFlagment: FC<DefaultType> = (props) => {
             setGetDateType,
             isPlaySound,
             setPlaySound,
+            isAudioPlay,
+            setAudioPlay,
             isGetFetchDates,
             setGetFetchDates
         }}>

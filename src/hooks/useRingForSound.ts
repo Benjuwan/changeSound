@@ -1,10 +1,12 @@
-import { useCallback } from "react"
+import { useCallback, useContext } from "react"
+import { TheContext } from "../libs/TheContext";
 
 /* サウンド（音声データ）再生 */
 export const useRingForSound = () => {
+    const { setAudioPlay } = useContext(TheContext);
+
     const RingForSound = useCallback((
-        targetAudioName: string,
-        stateFunc: (value: boolean) => void
+        targetAudioName: string
     ) => {
         const targetAudioEl = document.querySelector<HTMLAudioElement>(targetAudioName);
         if (targetAudioEl !== null) {
@@ -15,12 +17,12 @@ export const useRingForSound = () => {
             if (targetAudioEl.paused) {
                 targetAudioEl.play();
 
-                stateFunc(true);
+                setAudioPlay(true);
                 actionBtnEl?.classList.add('OnPlay');
             } else {
                 targetAudioEl.pause();
 
-                stateFunc(false);
+                setAudioPlay(false);
                 actionBtnEl?.classList.remove('OnPlay');
             }
         }
