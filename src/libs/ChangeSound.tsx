@@ -10,7 +10,6 @@ export const ChangeSound = memo(() => {
     const {
         isGetFetchDates,
         isPlaySound, setPlaySound,
-        setAudioPlay,
     } = useContext(TheContext);
 
     const { CreateAudioEls } = useCreateAudioEls();
