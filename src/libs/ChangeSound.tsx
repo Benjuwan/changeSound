@@ -4,6 +4,7 @@ import { TheContext } from "./TheContext";
 import { useCreateAudioEls } from "../hooks/useCreateAudioEls";
 
 import changeSound from '../../src/assets/changesound.mp3';
+import { useBackToDefault } from "../hooks/useBackToDefault";
 
 export const ChangeSound = memo(() => {
     const {
@@ -33,6 +34,8 @@ export const ChangeSound = memo(() => {
         }, 3000);
     }
 
+    const { BackToDefault } = useBackToDefault();
+
     return (
         <ChangeSoundBtn type="button" onClick={(e) => {
             CreateAudioEls(
@@ -42,6 +45,7 @@ export const ChangeSound = memo(() => {
             );
             clickSound(e.currentTarget);
             addClassMethod(e.currentTarget);
+            BackToDefault();
             setPlaySound(false);
         }}>
             {isPlaySound ? 'StartSound' : 'ChangeSound'}
