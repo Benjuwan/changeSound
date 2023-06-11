@@ -1,0 +1,26 @@
+[
+    {
+        "signal": "01",
+        "english": "cat",
+        "hiragana": "ねこ さん",
+        "kanji": "猫 さん"
+    },
+    {
+        "signal": "02",
+        "english": "pig",
+        "hiragana": "ぶた さん",
+        "kanji": "豚 さん"
+    },
+    {
+        "signal": "03",
+        "english": "dog",
+        "hiragana": "いぬ さん",
+        "kanji": "犬 さん"
+    },
+    {
+        "signal": "04",
+        "english": "tiger",
+        "hiragana": "とら さん",
+        "kanji": "虎・寅 さん"
+    }
+]

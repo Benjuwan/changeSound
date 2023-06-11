@@ -1,19 +1,29 @@
 @charset "utf-8";
 
-html{
+html {
     font-size: 62.5%;
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
-*{-webkit-box-sizing: border-box;box-sizing: border-box;}
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
 
-img{width: 100%;height: auto;}
+img {
+    width: 100%;
+    height: auto;
+}
 
-body{
-    font-family: "Helvetica Neue",Arial,"Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif;
+body {
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
     background-color: #efefef;
+    overflow-x: hidden;
 }
 
-@media screen and (min-width: 1025px){
-    html{font-size: 100%;}
+@media screen and (min-width: 700px) {
+    html {
+        font-size: 100%;
+    }
 }

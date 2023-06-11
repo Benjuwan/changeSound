@@ -1,20 +1,31 @@
-import { memo, useContext } from "react";
+import { memo, useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { TheContext } from "./TheContext";
-import { useFetchApi } from "../hooks/useFetchApi";
 import { useRingForSound } from "../hooks/useRingForSound";
 import { useSetImgAndTxt } from "../hooks/useSetImgAndTxt";
+import { useFetchApi } from "../hooks/useFetchApi";
 
 export const PlaySound = memo(() => {
-    const { isPlaySound } = useContext(TheContext);
-    const { FetchApi } = useFetchApi();
-    FetchApi(`${location.origin}/public/json/imgAltTxt.json`);
+    const [isAudioPlay, setAudioPlay] = useState<boolean>(false);
+
+    const { isGetDateType, isPlaySound } = useContext(TheContext);
     const { RingForSound } = useRingForSound();
     const { SetImgAndTxt } = useSetImgAndTxt();
 
+    const { FetchApi } = useFetchApi();
+    useEffect(() => {
+        FetchApi(`${location.origin}/public/json/${isGetDateType}/${isGetDateType}.json`);
+    }, [isGetDateType]);
+
+    /* サウンド再生後（addEventListener('ended')）は初期状態に戻す（setAudioPlay(false)）*/
+    const audioEl: HTMLAudioElement | null = document.querySelector('#soundsSec audio');
+    audioEl?.addEventListener('ended', () => {
+        setAudioPlay(false);
+    });
+
     const actionClickEvent = () => {
         /* サウンド（音声データ）再生 */
-        RingForSound('#soundsSec audio');
+        RingForSound('#soundsSec audio', setAudioPlay);
 
         /* 音声データに準拠した画像と説明文をセット */
         SetImgAndTxt('#soundsSec audio', '#charImg', '#charTxt');
@@ -22,8 +33,8 @@ export const PlaySound = memo(() => {
         /* ボタンクリックでスクロールトップ */
         window.scrollTo(0, 0);
 
-        /* 640px以上（タブレット・PC）では flexitem にする class を付与 */
-        if (window.matchMedia("(min-width: 640px)").matches) {
+        /* 700px以上（タブレット・PC）では flexitem にする class を付与 */
+        if (window.matchMedia("(min-width: 700px)").matches) {
             const contentsWrapper = document.querySelector<HTMLElement>('#contentsWrapper');
             contentsWrapper?.classList.add('appStart');
         }
@@ -33,7 +44,9 @@ export const PlaySound = memo(() => {
         <PlaySoundBtn type="button" id="actionBtn" disabled={isPlaySound}
             onClick={() => {
                 actionClickEvent();
-            }}>PlaySound</PlaySoundBtn>
+            }}>
+            {isAudioPlay ? 'PauseSound' : 'PlaySound'}
+        </PlaySoundBtn>
     );
 });
 
@@ -45,18 +58,25 @@ outline: none;
 border: none;
 border-radius: 8px;
 letter-spacing: .25em;
-color: #333;
-background-color: #ffbfe7;
-border-bottom: 5px solid #99748b;
-line-height: 160px;
+color: #fff;
+background-color: #e3e40f;
+border-bottom: 5px solid #909106;
+line-height: 16rem;
+cursor: pointer;
 
 &[disabled]{
+    cursor: default;
     background-color: #dadada;
     border-bottom: 4px solid transparent;
     color: #a7a7a7;
 }
 
-&:not([disabled]){
-    cursor: pointer;
+&.OnPlay{
+    background-color: #0f28e4;
+    border-bottom: 5px solid #0a1a91;
+}
+
+@media screen and (min-width: 700px) {
+    line-height: 160px;
 }
 `;
