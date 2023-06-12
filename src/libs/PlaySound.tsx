@@ -18,7 +18,11 @@ export const PlaySound = memo(() => {
 
     const { FetchApi } = useFetchApi();
     useEffect(() => {
+        /* 開発環境 */
         FetchApi(`${location.origin}/public/json/${isGetDateType}/${isGetDateType}.json`);
+
+        /* 本番環境（絶対パスで指定）*/
+        // FetchApi(`--- domain ---/public/json/${isGetDateType}/${isGetDateType}.json`);
     }, [isGetDateType]);
 
     /* サウンド再生後（addEventListener('ended')）は初期状態に戻す（setAudioPlay(false)）*/

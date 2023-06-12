@@ -22,17 +22,5 @@
         "english": "grand-father",
         "hiragana": "おじいちゃん",
         "kanji": "お爺ちゃん"
-    },
-    {
-        "signal": "05",
-        "english": "uncle",
-        "hiragana": "おじさん",
-        "kanji": "叔父さん"
-    },
-    {
-        "signal": "06",
-        "english": "aunt",
-        "hiragana": "おばさん",
-        "kanji": "叔母さん"
     }
 ]

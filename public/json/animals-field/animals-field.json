@@ -22,5 +22,11 @@
         "english": "tiger",
         "hiragana": "とら さん",
         "kanji": "虎・寅 さん"
+    },
+    {
+        "signal": "05",
+        "english": "horse",
+        "hiragana": "うま さん",
+        "kanji": "馬 さん"
     }
 ]
