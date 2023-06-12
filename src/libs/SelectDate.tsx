@@ -29,9 +29,9 @@ export const SelectDate = memo(() => {
             {isPlaySound &&
                 <option>ここから えらんでね</option>
             }
-            <option value="people">people</option>
-            <option value="animals-sea">animals-sea</option>
-            <option value="animals-field">animals-field</option>
+            <option value="people">しっている ひとたち</option>
+            <option value="animals-sea">うみ の どうぶつ</option>
+            <option value="animals-field">りく の どうぶつ</option>
         </SelectDateEl>
     );
 });

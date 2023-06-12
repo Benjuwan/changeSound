@@ -76,7 +76,7 @@ padding: 0 2.5em calc(100vw/3);
         }
     }
 
-@media screen and (min-width: 700px){
+@media screen and (min-width: 700px) {
     max-width: 640px;
     margin: auto;
     padding: 0 2.5em 160px;
@@ -105,6 +105,15 @@ padding: 0 2.5em calc(100vw/3);
                 }
             }
         }
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    max-width: 960px;
+
+    & .btnContainer button,
+    & figure {
+        max-width: 960px;
     }
 }
 `;

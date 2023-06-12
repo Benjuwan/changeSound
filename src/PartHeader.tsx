@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { memo } from 'react';
+
 import logo from '../src/assets/logo.svg';
 
 export const PartHeader = memo(() => {
@@ -20,6 +21,7 @@ margin-bottom: 2.5em;
 
     & img{
         width: 10em;
+        filter: drop-shadow(2px 2px 4px #8c8c8c);
     }
 }
 `;
