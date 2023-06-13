@@ -6,8 +6,7 @@ import { useBackToDefault } from "../hooks/useBackToDefault";
 export const SelectDate = memo(() => {
     const {
         setGetDateType,
-        isPlaySound,
-        setPlaySound,
+        isPlaySound, setPlaySound,
     } = useContext(TheContext);
 
     const changeSelect = (

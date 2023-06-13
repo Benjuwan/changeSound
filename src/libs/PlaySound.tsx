@@ -32,7 +32,7 @@ export const PlaySound = memo(() => {
         BackToDefault();
     });
 
-    const actionClickEvent = () => {
+    const playClickEvent = () => {
         /* サウンド（音声データ）再生 */
         RingForSound('#soundsSec audio');
 
@@ -50,9 +50,9 @@ export const PlaySound = memo(() => {
     }
 
     return (
-        <PlaySoundBtn type="button" id="actionBtn" disabled={isPlaySound}
+        <PlaySoundBtn type="button" id="playBtn" disabled={isPlaySound}
             onClick={() => {
-                actionClickEvent();
+                playClickEvent();
             }}>
             {isAudioPlay ? 'PauseSound' : 'PlaySound'}
         </PlaySoundBtn>

@@ -6,9 +6,9 @@ export const useBackToDefault = () => {
 
     const BackToDefault = useCallback(() => {
         /* 再生ボタンの初期化 */
-        const actionBtnEl: HTMLButtonElement | null = document.querySelector('#actionBtn');
-        if (actionBtnEl?.classList.contains('OnPlay')) {
-            actionBtnEl.classList.remove('OnPlay');
+        const playBtnEl: HTMLButtonElement | null = document.querySelector('#playBtn');
+        if (playBtnEl?.classList.contains('OnPlay')) {
+            playBtnEl.classList.remove('OnPlay');
         }
         setAudioPlay(false);
 

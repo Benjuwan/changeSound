@@ -13,17 +13,17 @@ export const useRingForSound = () => {
             targetAudioEl.volume = 1;
             targetAudioEl.currentTime = 0.05; // 音源の再生開始位置の指定
 
-            const actionBtnEl: HTMLButtonElement | null = document.querySelector('#actionBtn');
+            const playBtnEl: HTMLButtonElement | null = document.querySelector('#playBtn');
             if (targetAudioEl.paused) {
                 targetAudioEl.play();
 
                 setAudioPlay(true);
-                actionBtnEl?.classList.add('OnPlay');
+                playBtnEl?.classList.add('OnPlay');
             } else {
                 targetAudioEl.pause();
 
                 setAudioPlay(false);
-                actionBtnEl?.classList.remove('OnPlay');
+                playBtnEl?.classList.remove('OnPlay');
             }
         }
     }, []);
