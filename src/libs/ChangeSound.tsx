@@ -1,4 +1,4 @@
-import { memo, useContext } from "react";
+import { memo, useContext, useLayoutEffect } from "react";
 import styled from "styled-components";
 import { TheContext } from "./TheContext";
 import { useCreateAudioEls } from "../hooks/useCreateAudioEls";
@@ -11,6 +11,19 @@ export const ChangeSound = memo(() => {
         isGetFetchDates,
         isPlaySound, setPlaySound,
     } = useContext(TheContext);
+
+    /**
+     * useEffect で設定した副作用は必ずコンポーネントの描画の【後】に実行されますが、useLayoutEffect は、コンポーネントの描画の【前】に行われます。
+    */
+    useLayoutEffect(() => {
+        const actionBtnEl: HTMLButtonElement | null = document.querySelector('#actionBtn');
+        if (isPlaySound) {
+            actionBtnEl?.classList.add('startMode');
+        } else {
+            actionBtnEl?.classList.remove('startMode');
+        }
+    }, [isPlaySound]);
+    /* 依存配列に isPlaySound を指定して isPlaySound が更新される度に上記処理を実行する */
 
     const { CreateAudioEls } = useCreateAudioEls();
 
@@ -37,7 +50,7 @@ export const ChangeSound = memo(() => {
     const { BackToDefault } = useBackToDefault();
 
     return (
-        <ChangeSoundBtn type="button" onClick={(e) => {
+        <ChangeSoundBtn type="button" id="actionBtn" onClick={(e) => {
             CreateAudioEls(
                 '#soundsSec',
                 '#soundsSec audio',
@@ -83,6 +96,11 @@ position: relative;
     transform: translate(-50%, -50%);
     opacity: 0;
     visibility: hidden;
+}
+
+&.startMode {
+    background-color: #ff9800;
+    border-bottom: 5px solid #935802;
 }
 
 &.OnClicked{
