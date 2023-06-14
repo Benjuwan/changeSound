@@ -1,4 +1,4 @@
-import { memo, useContext, useEffect } from "react";
+import { memo, useContext, useEffect, useLayoutEffect } from "react";
 import styled from "styled-components";
 import { TheContext } from "./TheContext";
 import { useRingForSound } from "../hooks/useRingForSound";
@@ -12,6 +12,7 @@ export const PlaySound = memo(() => {
         isPlaySound,
         isAudioPlay, setAudioPlay,
     } = useContext(TheContext);
+
     const { RingForSound } = useRingForSound();
     const { SetImgAndTxt } = useSetImgAndTxt();
     const { BackToDefault } = useBackToDefault();
@@ -24,6 +25,20 @@ export const PlaySound = memo(() => {
         /* 本番環境（絶対パスで指定）*/
         // FetchApi(`--- domain ---/public/json/${isGetDateType}/${isGetDateType}.json`);
     }, [isGetDateType]);
+
+    /**
+     * useEffect で設定した副作用は必ずコンポーネントの描画の【後】に実行されますが、useLayoutEffect は、コンポーネントの描画の【前】に行われます。
+     *（なお useEffect でも同処理は可能）
+    */
+    useLayoutEffect(() => {
+        const playBtnEl: HTMLButtonElement | null = document.querySelector('#playBtn');
+        if (isAudioPlay) {
+            playBtnEl?.classList.add('OnPlay');
+        } else {
+            playBtnEl?.classList.remove('OnPlay');
+        }
+    }, [isAudioPlay]);
+    /* 依存配列に isAudioPlay を指定して isAudioPlay が更新される度に上記処理を実行する */
 
     /* サウンド再生後（addEventListener('ended')）は初期状態に戻す（setAudioPlay(false)）*/
     const audioEl: HTMLAudioElement | null = document.querySelector('#soundsSec audio');
@@ -83,6 +98,13 @@ cursor: pointer;
 &.OnPlay{
     background-color: #0f28e4;
     border-bottom: 5px solid #0a1a91;
+
+    &[disabled]{
+        cursor: default;
+        background-color: #dadada;
+        border-bottom: 4px solid transparent;
+        color: #a7a7a7;
+    }
 }
 
 @media screen and (min-width: 700px) {

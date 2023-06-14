@@ -14,6 +14,7 @@ export const ChangeSound = memo(() => {
 
     /**
      * useEffect で設定した副作用は必ずコンポーネントの描画の【後】に実行されますが、useLayoutEffect は、コンポーネントの描画の【前】に行われます。
+     *（なお useEffect でも同処理は可能）
     */
     useLayoutEffect(() => {
         const actionBtnEl: HTMLButtonElement | null = document.querySelector('#actionBtn');
