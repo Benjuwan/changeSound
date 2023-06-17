@@ -1,0 +1,38 @@
+[
+    {
+        "signal": "01",
+        "english": "F1(Formula 1) car",
+        "hiragana": "えふわんかー",
+        "kanji": "-"
+    },
+    {
+        "signal": "02",
+        "english": "bus",
+        "hiragana": "ばす",
+        "kanji": "-"
+    },
+    {
+        "signal": "03",
+        "english": "train",
+        "hiragana": "でんしゃ・てつどう",
+        "kanji": "電車・鉄道"
+    },
+    {
+        "signal": "04",
+        "english": "motorcycle",
+        "hiragana": "たんしゃ・ばいく・おーとばい",
+        "kanji": "単車"
+    },
+    {
+        "signal": "05",
+        "english": "car",
+        "hiragana": "くるま・じどうしゃ",
+        "kanji": "車・自動車"
+    },
+    {
+        "signal": "06",
+        "english": "airplane",
+        "hiragana": "ひこうき",
+        "kanji": "飛行機"
+    }
+]
