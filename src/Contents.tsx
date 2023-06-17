@@ -1,17 +1,28 @@
-import { memo } from "react";
+import { memo, useContext } from "react";
 import styled from "styled-components";
+import { TheContext } from "./libs/TheContext";
 import { SelectDate } from "./libs/SelectDate";
 import { ChangeSound } from "./libs/ChangeSound";
 import { PlaySound } from "./libs/PlaySound";
 
 export const Contents = memo(() => {
+    const { isPlaySound } = useContext(TheContext);
+
     return (
         <ContentsWrapper id="contentsWrapper">
-            <figure>
-                <img id="charImg" src="" alt="" />
-                <div id="charTxt"></div>
-            </figure>
+            {isPlaySound ||
+                <figure>
+                    <img id="charImg" src="" alt="" />
+                    <div id="charTxt"></div>
+                </figure>
+            }
             <div className="btnContainer">
+                {isPlaySound &&
+                    <>
+                        <h2>聞いて見て：幼児・低学年の子供向け知育ゲーム</h2>
+                        <p>『聞いて見て』は、幼児・低学年の子供向け知育ゲームです。「色々な乗り物」や「動物たち」などカテゴリーを選択してゲーム開始ボタンをクリックすると当該対象物の音声が流れるとともに画像が表示されます。聴覚・視覚的に対象物（モノ・コト）を学ぶことができるでしょう。</p>
+                    </>
+                }
                 <SelectDate />
                 <ChangeSound />
                 <PlaySound />
@@ -68,6 +79,15 @@ padding: 0 2.5em calc(100vw/3);
                 }
             }
         }
+
+        & h2 {
+            font-size: 2.4rem;
+        }
+
+        & p {
+            font-size: 1.4rem;
+            line-height: 2;
+        }
     }
 
     & #soundsSec{
@@ -88,11 +108,21 @@ padding: 0 2.5em calc(100vw/3);
         padding-top: 2em;
     }
 
-    & .btnContainer button,
-    & figure {
-        width: 100%;
-        max-width: 640px;
-        font-size: 24px;
+    & .btnContainer {
+        & button,
+        & figure {
+            width: 100%;
+            max-width: 640px;
+            font-size: 24px;
+        }
+    
+        & h2 {
+            font-size: 24px;
+        }
+    
+        & p {
+            font-size: 14px;
+        }
     }
 
     & figure{

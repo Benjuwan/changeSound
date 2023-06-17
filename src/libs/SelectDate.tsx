@@ -29,6 +29,7 @@ export const SelectDate = memo(() => {
                 <option>ここから えらんでね</option>
             }
             <option value="people">しっている ひとたち</option>
+            <option value="vehicles">いろいろな のりもの</option>
             <option value="animals-sea">うみ の どうぶつ</option>
             <option value="animals-field">りく の どうぶつ</option>
         </SelectDateEl>
