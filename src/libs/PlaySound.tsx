@@ -17,6 +17,7 @@ export const PlaySound = memo(() => {
     const { SetImgAndTxt } = useSetImgAndTxt();
     const { BackToDefault } = useBackToDefault();
 
+    /* 再生ボタンクリックで（jsonデータに記述された内容に合致する）音声及び画像が反映されるので、データ読込機能と直接的な関わりを持つ PlaySound.tsx コンポーネントに jsonデータ取得のカスタムフック（useFetchApi）を記述して実行させる */
     const { FetchApi } = useFetchApi();
     useEffect(() => {
         /* 開発環境 */

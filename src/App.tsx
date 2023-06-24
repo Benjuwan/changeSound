@@ -6,7 +6,7 @@ export const App = () => {
     <>
       <PartHeader />
       <Contents />
-      <p style={{ "textAlign": "center", "fontSize": "10px" }}><small>『音楽：魔王魂』</small></p>
+      <p style={{ "fontSize": "10px", "textAlign": "center" }}><small><a href="https://ondoku3.com/ja/" target="_blank">Voice By ondoku3.com</a></small></p>
     </>
   );
 }

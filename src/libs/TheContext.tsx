@@ -17,8 +17,8 @@ type DefaultType = {
     children: ReactNode
 }
 export const ContextFlagment: FC<DefaultType> = (props) => {
-    /* デフォルト値（people）を指定 */
-    const [isGetDateType, setGetDateType] = useState<string>('people');
+    /* デフォルト値（english：英単語の発声）を指定 */
+    const [isGetDateType, setGetDateType] = useState<string>('english');
 
     const [isPlaySound, setPlaySound] = useState<boolean>(true);
 

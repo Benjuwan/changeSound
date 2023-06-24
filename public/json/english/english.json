@@ -1,0 +1,50 @@
+[
+    {
+        "signal": "01",
+        "english": "tomato",
+        "hiragana": "とまと",
+        "kanji": "蕃茄（ばんか）"
+    },
+    {
+        "signal": "02",
+        "english": "strawberry",
+        "hiragana": "いちご／すとろべりー",
+        "kanji": "苺"
+    },
+    {
+        "signal": "03",
+        "english": "orange",
+        "hiragana": "みかん／おれんじ",
+        "kanji": "蜜柑"
+    },
+    {
+        "signal": "04",
+        "english": "water",
+        "hiragana": "みず／うぉーたー",
+        "kanji": "水"
+    },
+    {
+        "signal": "05",
+        "english": "milk",
+        "hiragana": "ぎゅうにゅう／みるく",
+        "kanji": "牛乳"
+    },
+    {
+        "signal": "06",
+        "english": "Hello",
+        "hiragana": "こんにちは／はろー",
+        "kanji": "-"
+    },
+    {
+        "signal": "07",
+        "english": "rain",
+        "hiragana": "あめ／れいん",
+        "kanji": "雨"
+    },
+    {
+        "signal": "08",
+        "english": "sunny",
+        "hiragana": "はれ／さにー",
+        "kanji": "晴れ"
+    }
+]

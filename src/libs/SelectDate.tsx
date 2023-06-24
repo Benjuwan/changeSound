@@ -26,9 +26,9 @@ export const SelectDate = memo(() => {
             BackToDefault();
         }}>
             {isPlaySound &&
-                <option>ここから えらんでね</option>
+                <option disabled>ここから えらんでね</option>
             }
-            <option value="people">しっている ひとたち</option>
+            <option value="english">えいご を きいてみよう</option>
             <option value="vehicles">いろいろな のりもの</option>
             <option value="animals-sea">うみ の どうぶつ</option>
             <option value="animals-field">りく の どうぶつ</option>
