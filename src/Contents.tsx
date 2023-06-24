@@ -1,4 +1,4 @@
-import { memo, useContext } from "react";
+import { memo, useContext, useEffect } from "react";
 import styled from "styled-components";
 import { TheContext } from "./libs/TheContext";
 import { SelectDate } from "./libs/SelectDate";
@@ -6,7 +6,24 @@ import { ChangeSound } from "./libs/ChangeSound";
 import { PlaySound } from "./libs/PlaySound";
 
 export const Contents = memo(() => {
-    const { isPlaySound } = useContext(TheContext);
+    const {
+        isPlaySound,
+        isAudioPlay,
+    } = useContext(TheContext);
+
+    /**
+     * useEffect で設定した副作用は必ずコンポーネントの描画の【後】に実行されますが、useLayoutEffect は、コンポーネントの描画の【前】に行われます。
+     *（なお useLayoutEffect でも同処理は可能）
+    */
+    useEffect(() => {
+        const charImg: HTMLImageElement | null = document.querySelector('#charImg');
+        if (isAudioPlay) {
+            charImg?.classList.add('charImgOn');
+        } else {
+            charImg?.classList.remove('charImgOn');
+        }
+    }, [isAudioPlay]);
+    /* 依存配列に isAudioPlay を指定して isAudioPlay が更新される度に上記処理を実行する */
 
     return (
         <ContentsWrapper id="contentsWrapper">
@@ -38,6 +55,21 @@ padding: 0 2.5em calc(100vw/3);
     & figure{
         width: clamp(16rem, calc(100vw/2), 56rem);
         margin: 0 auto 2em;
+        overflow: hidden;
+
+        & #charImg {
+            &.charImgOn {
+                display: inline-block;
+                animation: imgAction .5s linear forwards;
+                animation-delay: .5s;
+
+                @keyframes imgAction {
+                    0%, 100%{transform:translateY(0px) scaleY(1)}
+                    25%{transform:translateY(6px) scaleY(1.05)}
+                    50%{transform:translateY(12px) scaleY(1.25)}
+                }
+            }
+        }
 
         & #charTxt{
             font-size: 2rem;
