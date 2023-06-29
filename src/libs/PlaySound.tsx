@@ -23,8 +23,13 @@ export const PlaySound = memo(() => {
         /* 開発環境 */
         FetchApi(`${location.origin}/public/json/${isGetDateType}/${isGetDateType}.json`);
 
-        /* 本番環境（絶対パスで指定）*/
-        // FetchApi(`--- domain ---/public/json/${isGetDateType}/${isGetDateType}.json`);
+        /* 本番環境（絶対パスで指定 & publicディレクトリは不要）*/
+        /**
+         *【開発環境から本番環境への設定変更が必要な他の修正箇所（Hooks）】
+         * useCreateAudioEls.ts
+         * useSetImgAndTxt.ts
+        */
+        // FetchApi(`--- domain ---/json/${isGetDateType}/${isGetDateType}.json`);
     }, [isGetDateType]);
 
     /**

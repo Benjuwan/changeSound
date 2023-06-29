@@ -24,8 +24,12 @@ export const useSetImgAndTxt = () => {
 
         const targetAudioElNum = targetAudioEl?.getAttribute('src')?.split('.')[0].split('sounds-')[1];
         if (targetAudioElNum !== undefined) {
-            /* 読み込む画像ファイルのパスとタイプ（拡張子）の設定 */
+            /* 読み込む画像ファイルのパスとタイプ（.png）の設定 */
+            // 開発環境
             targetImg?.setAttribute('src', `${location.origin}/public/img/${isGetDateType}/img-${targetAudioElNum}-min.png`);
+
+            // 本番環境（絶対パスで指定 & publicディレクトリは不要）
+            // targetImg?.setAttribute('src', `--- domain ---/img/${isGetDateType}/img-${targetAudioElNum}-min.png`);
 
             isGetFetchDates.forEach((data, i) => {
                 // 配列は 0 スタートなので +1 して Number(targetAudioElNum) とリンクさせる

@@ -17,7 +17,12 @@ export const useCreateAudioEls = () => {
         } else {
             adjustsetSrcNum = `00${setSrcNum}`;
         }
+
+        // 開発環境
         targetEl.insertAdjacentHTML('beforeend', `<audio src="${location.origin}/public/sounds/${isGetDateType}/sounds-${adjustsetSrcNum}.mp3"}></audio>`);
+
+        // 本番環境（絶対パスで指定 & publicディレクトリは不要）
+        // targetEl.insertAdjacentHTML('beforeend', `<audio src="--- domain ---/sounds/${isGetDateType}/sounds-${adjustsetSrcNum}.mp3"}></audio>`);
     }, [isGetDateType]);
     /* 依存配列に isGetDateType を指定して select の値が切り替わる度に当該jsonデータを読み込む */
 
