@@ -1,7 +1,7 @@
 import { memo, useContext, useLayoutEffect } from "react";
 import styled from "styled-components";
 import { TheContext } from "./TheContext";
-import { useCreateAudioEls } from "../hooks/useCreateAudioEls";
+import { useSetAudioEls } from "../hooks/useSetAudioEls";
 import { useBackToDefault } from "../hooks/useBackToDefault";
 
 import changeSound from '../../src/assets/changesound.mp3';
@@ -26,7 +26,8 @@ export const ChangeSound = memo(() => {
     }, [isPlaySound]);
     /* 依存配列に isPlaySound を指定して isPlaySound が更新される度に上記処理を実行する */
 
-    const { CreateAudioEls } = useCreateAudioEls();
+    /* 音声データの準備 */
+    const { SetAudioEls } = useSetAudioEls();
 
     const clickSound = (
         btnEl: HTMLButtonElement
@@ -52,7 +53,7 @@ export const ChangeSound = memo(() => {
 
     return (
         <ChangeSoundBtn type="button" id="actionBtn" onClick={(e) => {
-            CreateAudioEls(
+            SetAudioEls(
                 '#soundsSec',
                 '#soundsSec audio',
                 isGetFetchDates.length
