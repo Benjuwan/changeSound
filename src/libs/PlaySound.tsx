@@ -26,10 +26,11 @@ export const PlaySound = memo(() => {
         /* 本番環境（絶対パスで指定 & publicディレクトリは不要）*/
         /**
          *【開発環境から本番環境への設定変更が必要な他の修正箇所（Hooks）】
-         * useCreateAudioEls.ts
+         * useSetAudioEls.ts
          * useSetImgAndTxt.ts
         */
-        // FetchApi(`--- domain ---/json/${isGetDateType}/${isGetDateType}.json`);
+        // FetchApi(`https://changesound-app.vercel.app/json/${isGetDateType}/${isGetDateType}.json`);
+
     }, [isGetDateType]);
 
     /**
@@ -57,7 +58,7 @@ export const PlaySound = memo(() => {
         /* サウンド（音声データ）再生 */
         RingForSound('#soundsSec audio');
 
-        /* 音声データに準拠した画像と説明文をセット */
+        /* 画像データを用意 */
         SetImgAndTxt('#soundsSec audio', '#charImg', '#charTxt');
 
         /* ボタンクリックでスクロールトップ */
