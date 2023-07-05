@@ -32,11 +32,10 @@ export const ChangeSound = memo(() => {
     const clickSound = (
         btnEl: HTMLButtonElement
     ) => {
-        const targetAudioEl = btnEl.querySelector<HTMLAudioElement>('audio');
-        if (targetAudioEl !== null) {
+        const targetAudioEl: HTMLAudioElement | null = btnEl.querySelector<HTMLAudioElement>('audio');
+        targetAudioEl?.play();
+        if (targetAudioEl) {
             targetAudioEl.volume = 1;
-            targetAudioEl.currentTime = 0.05; // 音源の再生開始位置の指定（アクションボタン連打への対応）
-            targetAudioEl.play();
         }
     }
 

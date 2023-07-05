@@ -8,18 +8,14 @@ export const useRingForSound = () => {
     const RingForSound = useCallback((
         targetAudioName: string
     ) => {
-        const targetAudioEl = document.querySelector<HTMLAudioElement>(targetAudioName);
-        if (targetAudioEl !== null) {
+        const targetAudioEl: HTMLAudioElement | null = document.querySelector<HTMLAudioElement>(targetAudioName);
+        if (targetAudioEl?.paused) {
             targetAudioEl.volume = 1;
-            targetAudioEl.currentTime = 0.05; // 音源の再生開始位置の指定
-
-            if (targetAudioEl.paused) {
-                targetAudioEl.play();
-                setAudioPlay(true);
-            } else {
-                targetAudioEl.pause();
-                setAudioPlay(false);
-            }
+            targetAudioEl?.play();
+            setAudioPlay(true);
+        } else {
+            targetAudioEl?.pause();
+            setAudioPlay(false);
         }
     }, []);
 
