@@ -17,10 +17,13 @@ export const Contents = memo(() => {
     */
     useEffect(() => {
         const charImg: HTMLImageElement | null = document.querySelector('#charImg');
-        if (isAudioPlay) {
-            charImg?.classList.add('charImgOn');
-        } else {
-            charImg?.classList.remove('charImgOn');
+        /* 読込 img が静止画（png）の場合はアニメーション用のスタイルを付与 */
+        if (charImg?.getAttribute('src')?.split('min.')[1] === 'png') {
+            if (isAudioPlay) {
+                charImg?.classList.add('charImgOn');
+            } else {
+                charImg?.classList.remove('charImgOn');
+            }
         }
     }, [isAudioPlay]);
     /* 依存配列に isAudioPlay を指定して isAudioPlay が更新される度に上記処理を実行する */

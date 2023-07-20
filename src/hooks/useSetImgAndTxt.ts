@@ -21,12 +21,23 @@ export const useSetImgAndTxt = () => {
         /* 音声データの拡張子（.mp3）で split して対象文字列（001 ~ 0XX）を取得する */
         const targetAudioElNum = document.querySelector<HTMLAudioElement>(targetAudioName)?.getAttribute('src')?.split('.mp3')[0].split('sounds-')[1];
 
-        /* 読み込む画像ファイルのパスとタイプ（.png）の設定 */
+        /**
+         * 読み込む画像ファイルのパスとタイプの設定
+         *（'english'）英語カテゴリー以外は拡張子を gif に指定
+        */
         // 開発環境
-        targetImg?.setAttribute('src', `${location.origin}/public/img/${isGetDateType}/img-${targetAudioElNum}-min.png`);
+        if (!(isGetDateType.match('english'))) {
+            targetImg?.setAttribute('src', `${location.origin}/public/img/${isGetDateType}/img-${targetAudioElNum}-min.gif`);
+        } else {
+            targetImg?.setAttribute('src', `${location.origin}/public/img/${isGetDateType}/img-${targetAudioElNum}-min.png`);
+        }
 
         // 本番環境（絶対パスで指定 & publicディレクトリは不要）
-        // targetImg?.setAttribute('src', `https://changesound-app.vercel.app/img/${isGetDateType}/img-${targetAudioElNum}-min.png`);
+        // if (!(isGetDateType.match('english'))) {
+        //     targetImg?.setAttribute('src', `https://changesound-app.vercel.app/img/${isGetDateType}/img-${targetAudioElNum}-min.gif`);
+        // } else {
+        //     targetImg?.setAttribute('src', `https://changesound-app.vercel.app/img/${isGetDateType}/img-${targetAudioElNum}-min.png`);
+        // }
 
 
         isGetFetchDates.forEach((data, i) => {
