@@ -139,7 +139,7 @@ padding: 0 2.5em calc(100vw/3);
     &.appStart {
         display: flex;
         justify-content: space-between;
-        gap: 5%;
+        gap: 8%;
         padding-top: 2em;
     }
 
@@ -176,9 +176,21 @@ padding: 0 2.5em calc(100vw/3);
 @media screen and (min-width: 1025px) {
     max-width: 960px;
 
+    &.appStart {
+        gap: 4%;
+    }
+
     & .btnContainer button,
     & figure {
+        width: 100%;
+    }
+
+    & .btnContainer button {
         max-width: 960px;
+    }
+
+    & figure {
+        max-width: 480px;
     }
 }
 `;

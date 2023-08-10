@@ -10,13 +10,17 @@ export const useFetchApi = () => {
     ) => {
         const getJsonDates = async () => {
             const response = await fetch(url, { cache: "no-store" });
-            const resObj: Array<jsonType> = await response.json();
-            const newAry = [...isGetFetchDates];
-            resObj.forEach(resEl => {
-                // console.log(resEl);
-                newAry.push(resEl);
-                setGetFetchDates(newAry);
-            });
+            if (response.status === 200) {
+                const resObj: Array<jsonType> = await response.json();
+                const newAry = [...isGetFetchDates];
+                resObj.forEach(resEl => {
+                    // console.log(resEl);
+                    newAry.push(resEl);
+                    setGetFetchDates(newAry);
+                });
+            } else {
+                console.log(response.status);
+            }
         }
         getJsonDates();
     }, []);
