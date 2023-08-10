@@ -17,6 +17,21 @@ export const PlaySound = memo(() => {
     const { SetImgAndTxt } = useSetImgAndTxt();
     const { BackToDefault } = useBackToDefault();
 
+    /* 700px以上（タブレット・PC）では flexitem にする class を付与 */
+    const targetViewPortWidth = window.matchMedia("(min-width: 700px)");
+    /* 初期読み込み時に 700px以上（タブレット・PC）の場合の処理 */
+    if (targetViewPortWidth.matches) {
+        const contentsWrapper = document.querySelector<HTMLElement>('#contentsWrapper');
+        contentsWrapper?.classList.add('appStart');
+    }
+    /* ブラウザ幅のリサイズ時に 700px以上時の処理を行うイベントリスナー */
+    targetViewPortWidth.addEventListener('change', (elWidth) => {
+        if (elWidth.matches) {
+            const contentsWrapper = document.querySelector<HTMLElement>('#contentsWrapper');
+            contentsWrapper?.classList.add('appStart');
+        }
+    });
+
     /* 再生ボタンクリックで（jsonデータに記述された内容に合致する）音声及び画像が反映されるので、データ読込機能と直接的な関わりを持つ PlaySound.tsx コンポーネントに jsonデータ取得のカスタムフック（useFetchApi）を記述して実行させる */
     const { FetchApi } = useFetchApi();
     useEffect(() => {
@@ -63,20 +78,15 @@ export const PlaySound = memo(() => {
 
         /* ボタンクリックでスクロールトップ */
         window.scrollTo(0, 0);
-
-        /* 700px以上（タブレット・PC）では flexitem にする class を付与 */
-        if (window.matchMedia("(min-width: 700px)").matches) {
-            const contentsWrapper = document.querySelector<HTMLElement>('#contentsWrapper');
-            contentsWrapper?.classList.add('appStart');
-        }
     }
+
 
     return (
         <PlaySoundBtn type="button" id="playBtn" disabled={isPlaySound}
             onClick={() => {
                 playClickEvent();
             }}>
-            {isAudioPlay ? 'PauseSound' : 'PlaySound'}
+            {isAudioPlay ? 'Stop' : 'Play'}
         </PlaySoundBtn>
     );
 });

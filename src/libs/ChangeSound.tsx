@@ -62,7 +62,7 @@ export const ChangeSound = memo(() => {
             BackToDefault();
             setPlaySound(false);
         }}>
-            {isPlaySound ? 'StartSound' : 'ChangeSound'}
+            {isPlaySound ? 'Game Start' : 'Change Sound'}
             <audio src={changeSound}></audio>
         </ChangeSoundBtn>
     );
@@ -120,7 +120,8 @@ position: relative;
 }
 
 @media screen and (min-width: 700px) {
-    line-height: 80px;
+    line-height: 2;
+    padding: 1em .5em;
     
     &.OnClicked {
         margin-bottom: 160px;
