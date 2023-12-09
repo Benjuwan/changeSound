@@ -39,7 +39,6 @@ export const useSetImgAndTxt = () => {
         //     targetImg?.setAttribute('src', `https://changesound-app.vercel.app/img/${isGetDateType}/img-${targetAudioElNum}-min.png`);
         // }
 
-
         isGetFetchDates.forEach((data, i) => {
             // 配列は 0 スタートなので +1 して Number(targetAudioElNum) とリンクさせる
             if (i + 1 === Number(targetAudioElNum)) {
@@ -47,11 +46,7 @@ export const useSetImgAndTxt = () => {
                 targetImg?.setAttribute('alt', `No.${data.signal}：${data.hiragana}`);
 
                 /* テキストデータの読込：テキストを表示する場合の処理 */
-                targetDescription?.insertAdjacentHTML('afterbegin', `
-                            <p><span>ひらがな：</span>${data.hiragana}</p>
-                            <p><span>えいご：</span>${data.english}</p>
-                            <p><span>かんじ（漢字）：</span>${data.kanji}</p>
-                            `);
+                targetDescription?.insertAdjacentHTML('afterbegin', `<p><span>ひらがな：</span>${data.hiragana}</p><p><span>えいご：</span>${data.english}</p><p><span>かんじ（漢字）：</span>${data.kanji}</p>`);
             }
         });
     }, [isPlaySound]);

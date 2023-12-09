@@ -26,10 +26,9 @@ export const PlaySound = memo(() => {
     }
     /* ブラウザ幅のリサイズ時に 700px以上時の処理を行うイベントリスナー */
     targetViewPortWidth.addEventListener('change', (elWidth) => {
-        if (elWidth.matches) {
-            const contentsWrapper = document.querySelector<HTMLElement>('#contentsWrapper');
-            contentsWrapper?.classList.add('appStart');
-        }
+        const contentsWrapper = document.querySelector<HTMLElement>('#contentsWrapper');
+        if (elWidth.matches) contentsWrapper?.classList.add('appStart');
+        else contentsWrapper?.classList.remove('appStart');
     });
 
     /* 再生ボタンクリックで（jsonデータに記述された内容に合致する）音声及び画像が反映されるので、データ読込機能と直接的な関わりを持つ PlaySound.tsx コンポーネントに jsonデータ取得のカスタムフック（useFetchApi）を記述して実行させる */
@@ -39,11 +38,6 @@ export const PlaySound = memo(() => {
         FetchApi(`${location.origin}/public/json/${isGetDateType}/${isGetDateType}.json`);
 
         /* 本番環境（絶対パスで指定 & publicディレクトリは不要）*/
-        /**
-         *【開発環境から本番環境への設定変更が必要な他の修正箇所（Hooks）】
-         * useSetAudioEls.ts
-         * useSetImgAndTxt.ts
-        */
         // FetchApi(`https://changesound-app.vercel.app/json/${isGetDateType}/${isGetDateType}.json`);
 
     }, [isGetDateType]);
@@ -83,9 +77,7 @@ export const PlaySound = memo(() => {
 
     return (
         <PlaySoundBtn type="button" id="playBtn" disabled={isPlaySound}
-            onClick={() => {
-                playClickEvent();
-            }}>
+            onClick={playClickEvent}>
             {isAudioPlay ? 'Stop' : 'Play'}
         </PlaySoundBtn>
     );
@@ -102,7 +94,7 @@ letter-spacing: .25em;
 color: #fff;
 background-color: #e3e40f;
 border-bottom: 5px solid #909106;
-line-height: 16rem;
+line-height: 8.8rem;
 cursor: pointer;
 
 &[disabled]{
@@ -125,6 +117,6 @@ cursor: pointer;
 }
 
 @media screen and (min-width: 700px) {
-    line-height: 160px;
+    line-height: 88px;
 }
 `;
