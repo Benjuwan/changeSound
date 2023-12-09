@@ -31,30 +31,23 @@ export const useSetAudioEls = () => {
     const SetAudioEls = useCallback((
         baseElName: string,
         targetAudioName: string,
-        countNum: number
+        contentLimitNum: number
     ) => {
-        let randomNum: number = Math.floor(Math.random() * countNum);
-
-        /* 0 だった場合 +1（ 0 のまま処理を進めない）*/
-        if (randomNum === 0) {
-            randomNum++;
-        }
+        let forSetNumber: number = 1; // 初期値
 
         /* サウンド（音声データ）の src 属性に指定しているデータナンバリング（sounds-00X）を取得 */
-        const targetAudioEl = document.querySelector<HTMLAudioElement>(targetAudioName);
-        const targetAudioElNum = targetAudioEl?.getAttribute('src')?.split('.mp3')[0].split('sounds-')[1];
+        const targetAudioEl: HTMLAudioElement | null = document.querySelector(targetAudioName);
+        const targetAudioElNum: string | undefined = targetAudioEl?.getAttribute('src')?.split('.mp3')[0].split('sounds-')[1];
 
-        const baseEl = document.querySelector<HTMLElement>(baseElName);
-        if (baseEl !== null) {
-            /* 同じ音声データの再生を回避するための条件分岐 */
-            if (Number(targetAudioElNum) !== randomNum) {
-                SetContent(baseEl, randomNum);
-            } else {
-                /* 音声データのデータナンバリング(targetAudioElNum)とランダム生成した数値(randomNum)が【同じ】場合は +1 して同一音声のダブりを回避 */
-                randomNum++;
-                SetContent(baseEl, randomNum);
-            }
+        if (typeof targetAudioElNum !== 'undefined') {
+            /* 取得したデータナンバリング（sounds-00X）を数値化 */
+            forSetNumber = parseInt(targetAudioElNum);
+            if (forSetNumber >= contentLimitNum) forSetNumber = 1; // 最終コンテンツまたはそれ以上の数値の場合は最初に戻る
+            else forSetNumber++; // 順繰り（上げ）表示
         }
+
+        const baseEl: HTMLElement | null = document.querySelector(baseElName);
+        if (baseEl !== null) SetContent(baseEl, forSetNumber);
     }, [isGetDateType]);
     /* 依存配列に isGetDateType を指定して select の値が切り替わる度に当該jsonデータを読み込む */
 

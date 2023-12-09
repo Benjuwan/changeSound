@@ -18,11 +18,8 @@ export const ChangeSound = memo(() => {
     */
     useLayoutEffect(() => {
         const actionBtnEl: HTMLButtonElement | null = document.querySelector('#actionBtn');
-        if (isPlaySound) {
-            actionBtnEl?.classList.add('startMode');
-        } else {
-            actionBtnEl?.classList.remove('startMode');
-        }
+        if (isPlaySound) actionBtnEl?.classList.add('startMode');
+        else actionBtnEl?.classList.remove('startMode');
     }, [isPlaySound]);
     /* 依存配列に isPlaySound を指定して isPlaySound が更新される度に上記処理を実行する */
 
@@ -32,11 +29,9 @@ export const ChangeSound = memo(() => {
     const clickSound = (
         btnEl: HTMLButtonElement
     ) => {
-        const targetAudioEl: HTMLAudioElement | null = btnEl.querySelector<HTMLAudioElement>('audio');
+        const targetAudioEl: HTMLAudioElement | null = btnEl.querySelector('audio');
         targetAudioEl?.play();
-        if (targetAudioEl) {
-            targetAudioEl.volume = 1;
-        }
+        if (targetAudioEl) targetAudioEl.volume = 1;
     }
 
     const addClassMethod = (
@@ -79,7 +74,7 @@ border-radius: 8px;
 letter-spacing: .25em;
 background-color: #00ff00;
 border-bottom: 5px solid #008100;
-line-height: 8rem;
+line-height: 8.8rem;
 position: relative;
 
 &::after{
@@ -105,7 +100,7 @@ position: relative;
 }
 
 &.OnClicked{
-    margin-bottom: 80px;
+    margin-bottom: 3em;
 
     &::after{
         transition: opacity .25s, visibility .25s, transform .5s;
@@ -120,11 +115,6 @@ position: relative;
 }
 
 @media screen and (min-width: 700px) {
-    line-height: 2;
-    padding: 1em .5em;
-    
-    &.OnClicked {
-        margin-bottom: 160px;
-    }
+    line-height: 88px;
 }
 `;
