@@ -39,7 +39,6 @@ export const PlaySound = memo(() => {
 
         /* 本番環境（絶対パスで指定 & publicディレクトリは不要）*/
         // FetchApi(`https://changesound-app.vercel.app/json/${isGetDateType}/${isGetDateType}.json`);
-
     }, [isGetDateType]);
 
     /**
@@ -63,7 +62,7 @@ export const PlaySound = memo(() => {
         BackToDefault();
     });
 
-    const playClickEvent = () => {
+    const playClickEvent: () => void = () => {
         /* サウンド（音声データ）再生 */
         RingForSound('#soundsSec audio');
 
@@ -73,7 +72,6 @@ export const PlaySound = memo(() => {
         /* ボタンクリックでスクロールトップ */
         window.scrollTo(0, 0);
     }
-
 
     return (
         <PlaySoundBtn type="button" id="playBtn" disabled={isPlaySound}

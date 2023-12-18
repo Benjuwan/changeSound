@@ -26,17 +26,13 @@ export const ChangeSound = memo(() => {
     /* 音声データの準備 */
     const { SetAudioEls } = useSetAudioEls();
 
-    const clickSound = (
-        btnEl: HTMLButtonElement
-    ) => {
+    const clickSound: (btnEl: HTMLButtonElement) => void = (btnEl: HTMLButtonElement) => {
         const targetAudioEl: HTMLAudioElement | null = btnEl.querySelector('audio');
         targetAudioEl?.play();
         if (targetAudioEl) targetAudioEl.volume = 1;
     }
 
-    const addClassMethod = (
-        btnEl: HTMLButtonElement
-    ) => {
+    const addClassMethod: (btnEl: HTMLButtonElement) => void = (btnEl: HTMLButtonElement) => {
         btnEl.classList.add('OnClicked');
         setTimeout(() => {
             btnEl.classList.remove('OnClicked');
