@@ -4,7 +4,7 @@ import { TheContext } from "../libs/TheContext";
 export const useBackToDefault = () => {
     const { setAudioPlay } = useContext(TheContext);
 
-    const BackToDefault = useCallback(() => {
+    const BackToDefault: () => void = useCallback(() => {
         /* 再生ボタンの初期化 */
         const playBtnEl: HTMLButtonElement | null = document.querySelector('#playBtn');
         if (playBtnEl?.classList.contains('OnPlay')) {

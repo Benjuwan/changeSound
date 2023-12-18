@@ -5,7 +5,11 @@ import { TheContext } from "../libs/TheContext";
 export const useSetImgAndTxt = () => {
     const { isGetDateType, isPlaySound, isGetFetchDates } = useContext(TheContext);
 
-    const SetImgAndTxt = useCallback((
+    const SetImgAndTxt: (
+        targetAudioName: string,
+        targetImgName: string,
+        targetDescriptionName: string
+    ) => void = useCallback((
         targetAudioName: string,
         targetImgName: string,
         targetDescriptionName: string
@@ -25,14 +29,14 @@ export const useSetImgAndTxt = () => {
          * 読み込む画像ファイルのパスとタイプの設定
          *（'english'）英語カテゴリー以外は拡張子を gif に指定
         */
-        // 開発環境
+        /* 開発環境 */
         if (!(isGetDateType.match('english'))) {
             targetImg?.setAttribute('src', `${location.origin}/public/img/${isGetDateType}/img-${targetAudioElNum}-min.gif`);
         } else {
             targetImg?.setAttribute('src', `${location.origin}/public/img/${isGetDateType}/img-${targetAudioElNum}-min.png`);
         }
 
-        // 本番環境（絶対パスで指定 & publicディレクトリは不要）
+        /* 本番環境（絶対パスで指定 & publicディレクトリは不要） */
         // if (!(isGetDateType.match('english'))) {
         //     targetImg?.setAttribute('src', `https://changesound-app.vercel.app/img/${isGetDateType}/img-${targetAudioElNum}-min.gif`);
         // } else {

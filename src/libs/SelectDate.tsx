@@ -9,9 +9,7 @@ export const SelectDate = memo(() => {
         isPlaySound, setPlaySound,
     } = useContext(TheContext);
 
-    const changeSelect = (
-        selectEl: ChangeEvent<HTMLSelectElement>
-    ) => {
+    const changeSelect: (selectEl: ChangeEvent<HTMLSelectElement>) => void = (selectEl: ChangeEvent<HTMLSelectElement>) => {
         /* isPlaySound を一旦リセット（true）して PlaySound を使用不可にして読み込むjsonデータを切り替えて処理（ChangeSoundクリックで再生処理）させる */
         setPlaySound(true);
         const selectedValue = selectEl.currentTarget.value;
