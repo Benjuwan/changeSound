@@ -1,19 +1,18 @@
 import { ChangeEvent, memo, useContext } from "react";
 import styled from "styled-components";
-import { TheContext } from "./TheContext";
+import { PlaySoundContext } from "../providers/PlaySoundContext";
+import { GetDataTypeContext } from "../providers/GetDataContext";
 import { useBackToDefault } from "../hooks/useBackToDefault";
 
 export const SelectDate = memo(() => {
-    const {
-        setGetDateType,
-        isPlaySound, setPlaySound,
-    } = useContext(TheContext);
+    const { isPlaySound, setPlaySound } = useContext(PlaySoundContext);
+    const { setGetDataType } = useContext(GetDataTypeContext);
 
     const changeSelect: (selectEl: ChangeEvent<HTMLSelectElement>) => void = (selectEl: ChangeEvent<HTMLSelectElement>) => {
         /* isPlaySound を一旦リセット（true）して PlaySound を使用不可にして読み込むjsonデータを切り替えて処理（ChangeSoundクリックで再生処理）させる */
         setPlaySound(true);
         const selectedValue = selectEl.currentTarget.value;
-        setGetDateType(selectedValue);
+        setGetDataType(selectedValue);
     }
 
     const { BackToDefault } = useBackToDefault();

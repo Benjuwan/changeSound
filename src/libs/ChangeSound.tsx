@@ -1,16 +1,15 @@
 import { memo, useContext, useLayoutEffect } from "react";
 import styled from "styled-components";
-import { TheContext } from "./TheContext";
+import { PlaySoundContext } from "../providers/PlaySoundContext";
+import { GetFetchDatasContext } from "../providers/GetFetchDatasContext";
 import { useSetAudioEls } from "../hooks/useSetAudioEls";
 import { useBackToDefault } from "../hooks/useBackToDefault";
 
 import changeSound from '../../src/assets/changesound.mp3';
 
 export const ChangeSound = memo(() => {
-    const {
-        isGetFetchDates,
-        isPlaySound, setPlaySound,
-    } = useContext(TheContext);
+    const { isPlaySound, setPlaySound } = useContext(PlaySoundContext);
+    const { isGetFetchDatas } = useContext(GetFetchDatasContext);
 
     /**
      * useEffect で設定した副作用は必ずコンポーネントの描画の【後】に実行されますが、useLayoutEffect は、コンポーネントの描画の【前】に行われます。
@@ -46,7 +45,7 @@ export const ChangeSound = memo(() => {
             SetAudioEls(
                 '#soundsSec',
                 '#soundsSec audio',
-                isGetFetchDates.length
+                isGetFetchDatas.length
             );
             clickSound(e.currentTarget);
             addClassMethod(e.currentTarget);

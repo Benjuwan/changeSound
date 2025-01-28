@@ -1,8 +1,8 @@
 import { useCallback, useContext } from "react"
-import { TheContext } from "../libs/TheContext";
+import { GetDataTypeContext } from "../providers/GetDataContext";
 
 export const useSetAudioEls = () => {
-    const { isGetDateType } = useContext(TheContext);
+    const { isGetDataType } = useContext(GetDataTypeContext);
 
     /* 所定の要素(#soundsSec)内をクリーンにして audio タグ（サウンド）をセット */
     const SetContent: (targetEl: HTMLElement, setSrcNum: number) => void = useCallback((
@@ -19,12 +19,13 @@ export const useSetAudioEls = () => {
         }
 
         /* 開発環境 */
-        targetEl.insertAdjacentHTML('beforeend', `<audio src="${location.origin}/public/sounds/${isGetDateType}/sounds-${adjustsetSrcNum}.mp3"}></audio>`);
+        targetEl.insertAdjacentHTML('beforeend', `<audio src="${location.origin}/public/sounds/${isGetDataType}/sounds-${adjustsetSrcNum}.mp3"}></audio>`);
 
         /* 本番環境（絶対パスで指定 & publicディレクトリは不要） */
-        // targetEl.insertAdjacentHTML('beforeend', `<audio src="https://changesound-app.vercel.app/sounds/${isGetDateType}/sounds-${adjustsetSrcNum}.mp3"}></audio>`);
-    }, [isGetDateType]);
-    /* 依存配列に isGetDateType を指定して select の値が切り替わる度に当該jsonデータを読み込む */
+        // targetEl.insertAdjacentHTML('beforeend', `<audio src="https://changesound-app.vercel.app/sounds/${isGetDataType}/sounds-${adjustsetSrcNum}.mp3"}></audio>`);
+
+    }, [isGetDataType]);
+    /* 依存配列に isGetDataType を指定して select の値が切り替わる度に当該jsonデータを読み込む */
 
     /* サウンド（音声データ）を用意するためのメイン機能 */
     const SetAudioEls: (
@@ -51,8 +52,10 @@ export const useSetAudioEls = () => {
 
         const baseEl: HTMLElement | null = document.querySelector(baseElName);
         if (baseEl !== null) SetContent(baseEl, forSetNumber);
-    }, [isGetDateType]);
-    /* 依存配列に isGetDateType を指定して select の値が切り替わる度に当該jsonデータを読み込む */
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isGetDataType]);
+    /* 依存配列に isGetDataType を指定して select の値が切り替わる度に当該jsonデータを読み込む */
 
     return { SetAudioEls }
 }
