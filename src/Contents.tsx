@@ -1,13 +1,13 @@
 import { memo, useContext } from "react";
 import styled from "styled-components";
-import { TheContext } from "./libs/TheContext";
+import { PlaySoundContext } from "./providers/PlaySoundContext";
 import { FigureImg } from "./libs/FigureImg";
 import { SelectDate } from "./libs/SelectDate";
 import { ChangeSound } from "./libs/ChangeSound";
 import { PlaySound } from "./libs/PlaySound";
 
 export const Contents = memo(() => {
-    const { isPlaySound } = useContext(TheContext);
+    const { isPlaySound } = useContext(PlaySoundContext);
 
     return (
         <ContentsWrapper id="contentsWrapper">

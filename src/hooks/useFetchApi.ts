@@ -1,9 +1,9 @@
 import { useCallback, useContext } from "react"
-import { TheContext } from "../libs/TheContext";
 import { jsonType } from "../ts/jsonType";
+import { GetFetchDatasContext } from "../providers/GetFetchDatasContext";
 
 export const useFetchApi = () => {
-    const { isGetFetchDates, setGetFetchDates } = useContext(TheContext);
+    const { isGetFetchDatas, setGetFetchDatas } = useContext(GetFetchDatasContext);
 
     const FetchApi: (url: string) => void = useCallback((
         url: string
@@ -12,12 +12,13 @@ export const useFetchApi = () => {
             const response = await fetch(url, { cache: "no-store" });
             if (response.status === 200) {
                 const resObj: Array<jsonType> = await response.json();
-                setGetFetchDates([...isGetFetchDates, ...resObj]);
+                setGetFetchDatas([...isGetFetchDatas, ...resObj]);
             } else {
                 console.error(response.status);
             }
         }
         getJsonDates();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return { FetchApi }

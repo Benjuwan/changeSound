@@ -1,17 +1,17 @@
 import { memo, useContext, useEffect, useLayoutEffect } from "react";
 import styled from "styled-components";
-import { TheContext } from "./TheContext";
+import { GetDataTypeContext } from "../providers/GetDataContext";
+import { PlaySoundContext } from "../providers/PlaySoundContext";
+import { AudioPlayContext } from "../providers/AudioPlayContext";
 import { useRingForSound } from "../hooks/useRingForSound";
 import { useSetImgAndTxt } from "../hooks/useSetImgAndTxt";
 import { useFetchApi } from "../hooks/useFetchApi";
 import { useBackToDefault } from "../hooks/useBackToDefault";
 
 export const PlaySound = memo(() => {
-    const {
-        isGetDateType,
-        isPlaySound,
-        isAudioPlay, setAudioPlay,
-    } = useContext(TheContext);
+    const { isGetDataType } = useContext(GetDataTypeContext);
+    const { isPlaySound } = useContext(PlaySoundContext);
+    const { isAudioPlay, setAudioPlay } = useContext(AudioPlayContext);
 
     const { RingForSound } = useRingForSound();
     const { SetImgAndTxt } = useSetImgAndTxt();
@@ -35,11 +35,13 @@ export const PlaySound = memo(() => {
     const { FetchApi } = useFetchApi();
     useEffect(() => {
         /* 開発環境 */
-        FetchApi(`${location.origin}/public/json/${isGetDateType}/${isGetDateType}.json`);
+        FetchApi(`${location.origin}/public/json/${isGetDataType}/${isGetDataType}.json`);
 
         /* 本番環境（絶対パスで指定 & publicディレクトリは不要）*/
-        // FetchApi(`https://changesound-app.vercel.app/json/${isGetDateType}/${isGetDateType}.json`);
-    }, [isGetDateType]);
+        // FetchApi(`https://changesound-app.vercel.app/json/${isGetDataType}/${isGetDataType}.json`);
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isGetDataType]);
 
     /**
      * useEffect で設定した副作用は必ずコンポーネントの描画の【後】に実行されますが、useLayoutEffect は、コンポーネントの描画の【前】に行われます。

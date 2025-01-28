@@ -1,9 +1,13 @@
 import { useCallback, useContext } from "react";
-import { TheContext } from "../libs/TheContext";
+import { GetDataTypeContext } from "../providers/GetDataContext";
+import { PlaySoundContext } from "../providers/PlaySoundContext";
+import { GetFetchDatasContext } from "../providers/GetFetchDatasContext";
 
 /* 音声データに準拠した画像と説明文をセット */
 export const useSetImgAndTxt = () => {
-    const { isGetDateType, isPlaySound, isGetFetchDates } = useContext(TheContext);
+    const { isGetDataType } = useContext(GetDataTypeContext);
+    const { isPlaySound } = useContext(PlaySoundContext);
+    const { isGetFetchDatas } = useContext(GetFetchDatasContext);
 
     const SetImgAndTxt: (
         targetAudioName: string,
@@ -30,20 +34,20 @@ export const useSetImgAndTxt = () => {
          *（'english'）英語カテゴリー以外は拡張子を gif に指定
         */
         /* 開発環境 */
-        if (!(isGetDateType.match('english'))) {
-            targetImg?.setAttribute('src', `${location.origin}/public/img/${isGetDateType}/img-${targetAudioElNum}-min.gif`);
+        if (!(isGetDataType.match('english'))) {
+            targetImg?.setAttribute('src', `${location.origin}/public/img/${isGetDataType}/img-${targetAudioElNum}-min.gif`);
         } else {
-            targetImg?.setAttribute('src', `${location.origin}/public/img/${isGetDateType}/img-${targetAudioElNum}-min.png`);
+            targetImg?.setAttribute('src', `${location.origin}/public/img/${isGetDataType}/img-${targetAudioElNum}-min.png`);
         }
 
         /* 本番環境（絶対パスで指定 & publicディレクトリは不要） */
-        // if (!(isGetDateType.match('english'))) {
-        //     targetImg?.setAttribute('src', `https://changesound-app.vercel.app/img/${isGetDateType}/img-${targetAudioElNum}-min.gif`);
+        // if (!(isGetDataType.match('english'))) {
+        //     targetImg?.setAttribute('src', `https://changesound-app.vercel.app/img/${isGetDataType}/img-${targetAudioElNum}-min.gif`);
         // } else {
-        //     targetImg?.setAttribute('src', `https://changesound-app.vercel.app/img/${isGetDateType}/img-${targetAudioElNum}-min.png`);
+        //     targetImg?.setAttribute('src', `https://changesound-app.vercel.app/img/${isGetDataType}/img-${targetAudioElNum}-min.png`);
         // }
 
-        isGetFetchDates.forEach((data, i) => {
+        isGetFetchDatas.forEach((data, i) => {
             // 配列は 0 スタートなので +1 して Number(targetAudioElNum) とリンクさせる
             if (i + 1 === Number(targetAudioElNum)) {
                 /* 画像ファイルの読込：画像を表示する場合の処理 */
@@ -53,6 +57,7 @@ export const useSetImgAndTxt = () => {
                 targetDescription?.insertAdjacentHTML('afterbegin', `<p><span>ひらがな：</span>${data.hiragana}</p><p><span>えいご：</span>${data.english}</p><p><span>かんじ（漢字）：</span>${data.kanji}</p>`);
             }
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isPlaySound]);
     /* 依存配列（isPlaySound）を指定（ChangeSoundボタンをクリックする度に更新） */
 

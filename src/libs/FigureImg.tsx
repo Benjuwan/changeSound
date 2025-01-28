@@ -1,8 +1,8 @@
 import { memo, useEffect, useContext } from "react";
-import { TheContext } from "./TheContext";
+import { AudioPlayContext } from "../providers/AudioPlayContext";
 
 export const FigureImg = memo(() => {
-    const { isAudioPlay } = useContext(TheContext);
+    const { isAudioPlay } = useContext(AudioPlayContext);
 
     /**
      * useEffect で設定した副作用は必ずコンポーネントの描画の【後】に実行されますが、useLayoutEffect は、コンポーネントの描画の【前】に行われます。

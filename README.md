@@ -6,6 +6,22 @@
 ## 概要
 `public/json`ディレクトリ内の各種`json`データからコンテンツ情報を取得し、`public`ディレクトリ内の`img`, `sounds`ディレクトリ内からコンテンツに準じた画像と音声を取得する仕組み。
 
+## 技術構成
+- @eslint/js@9.19.0
+- @types/react-dom@18.3.5
+- @types/react@18.3.18
+- @vitejs/plugin-react@4.3.4
+- eslint-plugin-react-hooks@5.1.0
+- eslint-plugin-react-refresh@0.4.18
+- eslint@9.19.0
+- globals@15.14.0
+- react-dom@18.3.1
+- react@18.3.1
+- styled-components@6.1.14
+- typescript-eslint@8.22.0
+- typescript@5.6.3
+- vite@6.0.11
+
 ## 注意事項
 ホスティングする際は下記コンポーネント・カスタムフックで（本番環境モードに切り替える）記述修正が必要。
 
