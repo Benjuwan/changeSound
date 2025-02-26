@@ -5,6 +5,7 @@ import { FigureImg } from "./libs/FigureImg";
 import { SelectDate } from "./libs/SelectDate";
 import { ChangeSound } from "./libs/ChangeSound";
 import { PlaySound } from "./libs/PlaySound";
+import { ContentSound } from "./libs/ContentSound";
 
 export const Contents = memo(() => {
     const { isPlaySound } = useContext(PlaySoundContext);
@@ -25,7 +26,7 @@ export const Contents = memo(() => {
                     <PlaySound />
                 </div>
             </div>
-            <section id="soundsSec"></section>
+            <ContentSound />
         </ContentsWrapper>
     );
 });
@@ -82,8 +83,10 @@ padding: 0 2.5em calc(100vw/3);
         
                 &:not([disabled]){
                     &:hover{
-                        transition: opacity .25s;
-                        opacity: .5;
+                        filter: brightness(1.5);
+                        border-color: transparent;
+                        transform: translateY(3px);
+                        transition: all .25s;
                     }
             
                     &:active{
