@@ -5,7 +5,7 @@ type DefaultType = {
     children: ReactNode
 }
 export const SrcNumberingContextFlagment: FC<DefaultType> = (props) => {
-    const [isSrcNumbering, setSrcNumbering] = useState<number>(0);
+    const [isSrcNumbering, setSrcNumbering] = useState<number>(1);
 
     return (
         <SrcNumberingContext.Provider value={{
