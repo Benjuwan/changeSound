@@ -1,27 +1,25 @@
 import { ChangeEvent, memo, useContext } from "react";
 import styled from "styled-components";
 import { PlaySoundContext } from "../providers/PlaySoundContext";
+import { AudioPlayContext } from "../providers/AudioPlayContext";
 import { GetDataTypeContext } from "../providers/GetDataContext";
-import { useBackToDefault } from "../hooks/useBackToDefault";
+import { SrcNumberingContext } from "../providers/SrcNumberingContext";
 
 export const SelectDate = memo(() => {
-    const { isPlaySound, setPlaySound } = useContext(PlaySoundContext);
+    const { isPlaySound } = useContext(PlaySoundContext);
+    const { setAudioPlay } = useContext(AudioPlayContext);
     const { setGetDataType } = useContext(GetDataTypeContext);
+    const { setSrcNumbering } = useContext(SrcNumberingContext);
 
     const changeSelect: (selectEl: ChangeEvent<HTMLSelectElement>) => void = (selectEl: ChangeEvent<HTMLSelectElement>) => {
-        /* isPlaySound を一旦リセット（true）して PlaySound を使用不可にして読み込むjsonデータを切り替えて処理（ChangeSoundクリックで再生処理）させる */
-        setPlaySound(true);
+        setAudioPlay(false);
+        setSrcNumbering(1); // 先頭ファイルナンバーである「1」を指定
         const selectedValue = selectEl.currentTarget.value;
         setGetDataType(selectedValue);
     }
 
-    const { BackToDefault } = useBackToDefault();
-
     return (
-        <SelectDateEl onChange={(el) => {
-            changeSelect(el);
-            BackToDefault();
-        }}>
+        <SelectDateEl onChange={changeSelect}>
             {isPlaySound &&
                 <option disabled>ここから えらんでね</option>
             }

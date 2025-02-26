@@ -1,59 +1,61 @@
-import { memo, useContext, useLayoutEffect } from "react";
+import { memo, SyntheticEvent, useContext } from "react";
 import styled from "styled-components";
 import { PlaySoundContext } from "../providers/PlaySoundContext";
+import { AudioPlayContext } from "../providers/AudioPlayContext";
 import { GetFetchDatasContext } from "../providers/GetFetchDatasContext";
-import { useSetAudioEls } from "../hooks/useSetAudioEls";
-import { useBackToDefault } from "../hooks/useBackToDefault";
+import { SrcNumberingContext } from "../providers/SrcNumberingContext";
 
 import changeSound from '../../src/assets/changesound.mp3';
 
 export const ChangeSound = memo(() => {
     const { isPlaySound, setPlaySound } = useContext(PlaySoundContext);
+    const { setAudioPlay } = useContext(AudioPlayContext);
     const { isGetFetchDatas } = useContext(GetFetchDatasContext);
-
-    /**
-     * useEffect で設定した副作用は必ずコンポーネントの描画の【後】に実行されますが、useLayoutEffect は、コンポーネントの描画の【前】に行われます。
-     *（なお useEffect でも同処理は可能）
-    */
-    useLayoutEffect(() => {
-        const actionBtnEl: HTMLButtonElement | null = document.querySelector('#actionBtn');
-        if (isPlaySound) actionBtnEl?.classList.add('startMode');
-        else actionBtnEl?.classList.remove('startMode');
-    }, [isPlaySound]);
-    /* 依存配列に isPlaySound を指定して isPlaySound が更新される度に上記処理を実行する */
-
-    /* 音声データの準備 */
-    const { SetAudioEls } = useSetAudioEls();
+    const { isSrcNumbering, setSrcNumbering } = useContext(SrcNumberingContext);
 
     const clickSound: (btnEl: HTMLButtonElement) => void = (btnEl: HTMLButtonElement) => {
         const targetAudioEl: HTMLAudioElement | null = btnEl.querySelector('audio');
         targetAudioEl?.play();
-        if (targetAudioEl) targetAudioEl.volume = 1;
+        if (targetAudioEl !== null) {
+            targetAudioEl.volume = 1;
+        }
     }
 
-    const addClassMethod: (btnEl: HTMLButtonElement) => void = (btnEl: HTMLButtonElement) => {
+    const addClassMethod: (btnEl: HTMLButtonElement) => () => void = (btnEl: HTMLButtonElement) => {
         btnEl.classList.add('OnClicked');
-        setTimeout(() => {
+        const timeOutId = setTimeout(() => {
             btnEl.classList.remove('OnClicked');
         }, 3000);
+
+        return () => {
+            clearTimeout(timeOutId);
+        }
     }
 
-    const { BackToDefault } = useBackToDefault();
+    /* 最後のコンテンツでは先頭ファイルナンバーである「1」を指定し、それ以外は順次繰り上げていく */
+    const ctrlSrcNumbering: () => void = () => {
+        if (isSrcNumbering === isGetFetchDatas.length) {
+            setSrcNumbering(1);
+        } else {
+            setSrcNumbering((prev) => prev + 1);
+        }
+    }
+
+    const handleClick: (e: SyntheticEvent<HTMLButtonElement>) => void = (e: SyntheticEvent<HTMLButtonElement>) => {
+        clickSound(e.currentTarget);
+        addClassMethod(e.currentTarget);
+        ctrlSrcNumbering();
+        setAudioPlay(false);
+        setPlaySound(false);
+    }
 
     return (
-        <ChangeSoundBtn type="button" id="actionBtn" onClick={(e) => {
-            SetAudioEls(
-                '#soundsSec',
-                '#soundsSec audio',
-                isGetFetchDatas.length
-            );
-            clickSound(e.currentTarget);
-            addClassMethod(e.currentTarget);
-            BackToDefault();
-            setPlaySound(false);
-        }}>
+        <ChangeSoundBtn type="button"
+            id="actionBtn"
+            className={isPlaySound ? 'startMode' : ''}
+            onClick={handleClick}>
             {isPlaySound ? 'Game Start' : 'Change Sound'}
-            <audio src={changeSound}></audio>
+            <audio src={changeSound}>&nbsp;</audio>
         </ChangeSoundBtn>
     );
 });

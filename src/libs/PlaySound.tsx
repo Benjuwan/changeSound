@@ -1,12 +1,11 @@
-import { memo, useContext, useEffect, useLayoutEffect } from "react";
+import { memo, useContext, useEffect } from "react";
 import styled from "styled-components";
+import { isDeploy } from "../common/isDeploy";
 import { GetDataTypeContext } from "../providers/GetDataContext";
 import { PlaySoundContext } from "../providers/PlaySoundContext";
 import { AudioPlayContext } from "../providers/AudioPlayContext";
 import { useRingForSound } from "../hooks/useRingForSound";
-import { useSetImgAndTxt } from "../hooks/useSetImgAndTxt";
 import { useFetchApi } from "../hooks/useFetchApi";
-import { useBackToDefault } from "../hooks/useBackToDefault";
 
 export const PlaySound = memo(() => {
     const { isGetDataType } = useContext(GetDataTypeContext);
@@ -14,8 +13,6 @@ export const PlaySound = memo(() => {
     const { isAudioPlay, setAudioPlay } = useContext(AudioPlayContext);
 
     const { RingForSound } = useRingForSound();
-    const { SetImgAndTxt } = useSetImgAndTxt();
-    const { BackToDefault } = useBackToDefault();
 
     /* 700px以上（タブレット・PC）では flexitem にする class を付与 */
     const targetViewPortWidth = window.matchMedia("(min-width: 700px)");
@@ -34,49 +31,40 @@ export const PlaySound = memo(() => {
     /* 再生ボタンクリックで（jsonデータに記述された内容に合致する）音声及び画像が反映されるので、データ読込機能と直接的な関わりを持つ PlaySound.tsx コンポーネントに jsonデータ取得のカスタムフック（useFetchApi）を記述して実行させる */
     const { FetchApi } = useFetchApi();
     useEffect(() => {
-        /* 開発環境 */
-        FetchApi(`${location.origin}/public/json/${isGetDataType}/${isGetDataType}.json`);
-
-        /* 本番環境（絶対パスで指定 & publicディレクトリは不要）*/
-        // FetchApi(`https://changesound-app.vercel.app/json/${isGetDataType}/${isGetDataType}.json`);
-
+        /* 本番環境は絶対パスで指定 */
+        const fetchUrlPath: string = isDeploy ? `https://changesound-app.vercel.app/json/${isGetDataType}/${isGetDataType}.json` : `${location.origin}/public/json/${isGetDataType}/${isGetDataType}.json`;
+        FetchApi(fetchUrlPath);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isGetDataType]);
 
-    /**
-     * useEffect で設定した副作用は必ずコンポーネントの描画の【後】に実行されますが、useLayoutEffect は、コンポーネントの描画の【前】に行われます。
-     *（なお useEffect でも同処理は可能）
-    */
-    useLayoutEffect(() => {
-        const playBtnEl: HTMLButtonElement | null = document.querySelector('#playBtn');
-        if (isAudioPlay) {
-            playBtnEl?.classList.add('OnPlay');
-        } else {
-            playBtnEl?.classList.remove('OnPlay');
-        }
-    }, [isAudioPlay]);
-    /* 依存配列に isAudioPlay を指定して isAudioPlay が更新される度に上記処理を実行する */
+    useEffect(() => {
+        /* サウンド再生後（addEventListener('ended')）は初期状態に戻す（setAudioPlay(false)）*/
+        const audioEl: HTMLAudioElement | null = document.querySelector('#soundsSec audio');
+        audioEl?.addEventListener('ended', () => {
+            setAudioPlay(false);
+        });
 
-    /* サウンド再生後（addEventListener('ended')）は初期状態に戻す（setAudioPlay(false)）*/
-    const audioEl: HTMLAudioElement | null = document.querySelector('#soundsSec audio');
-    audioEl?.addEventListener('ended', () => {
-        setAudioPlay(false);
-        BackToDefault();
-    });
+        return () => {
+            audioEl?.removeEventListener('ended', () => {
+                setAudioPlay(false);
+            });
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const playClickEvent: () => void = () => {
         /* サウンド（音声データ）再生 */
         RingForSound('#soundsSec audio');
-
-        /* 画像データを用意 */
-        SetImgAndTxt('#soundsSec audio', '#charImg', '#charTxt');
 
         /* ボタンクリックでスクロールトップ */
         window.scrollTo(0, 0);
     }
 
     return (
-        <PlaySoundBtn type="button" id="playBtn" disabled={isPlaySound}
+        <PlaySoundBtn type="button"
+            id="playBtn"
+            className={isAudioPlay ? 'OnPlay' : ''}
+            disabled={isPlaySound}
             onClick={playClickEvent}>
             {isAudioPlay ? 'Stop' : 'Play'}
         </PlaySoundBtn>
