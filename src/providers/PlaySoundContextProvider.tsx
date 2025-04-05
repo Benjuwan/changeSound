@@ -3,7 +3,7 @@ import { PlaySoundContext } from "./PlaySoundContext";
 
 type DefaultType = {
     children: ReactNode
-}
+};
 export const PlaySoundContextFlagment: FC<DefaultType> = (props) => {
     const [isPlaySound, setPlaySound] = useState<boolean>(true);
 
