@@ -4,7 +4,7 @@ import { GetFetchDatasContext } from "./GetFetchDatasContext";
 
 type DefaultType = {
     children: ReactNode
-}
+};
 export const GetFetchDatasContextFlagment: FC<DefaultType> = (props) => {
     const [isGetFetchDatas, setGetFetchDatas] = useState<Array<jsonType>>([]);
 
