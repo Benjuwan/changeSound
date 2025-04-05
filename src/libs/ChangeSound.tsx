@@ -1,5 +1,4 @@
 import { memo, SyntheticEvent, useContext } from "react";
-import styled from "styled-components";
 import { PlaySoundContext } from "../providers/PlaySoundContext";
 import { AudioPlayContext } from "../providers/AudioPlayContext";
 import { GetFetchDatasContext } from "../providers/GetFetchDatasContext";
@@ -50,68 +49,12 @@ export const ChangeSound = memo(() => {
     }
 
     return (
-        <ChangeSoundBtn type="button"
+        <button type="button"
             id="actionBtn"
-            className={isPlaySound ? 'startMode' : ''}
+            className={`ChangeSoundBtn text-[clamp(0.875rem,calc(100vw/56),1.125rem)] w-full rounded not-disabled:hover:brightness-[1.5] not-disabled:hover:border-transparent not-disabled:hover:transform-[translateY(3px)] not-disabled:hover:transition not-disabled:hover:duration-[.25s] active:transition active:duration-[.25s] active:border-transparent active:transform-[translateY(.25em)] block cursor-pointer mx-auto mb-[1em] appearance-none rounded-2 tracking-[.25em] bg-[#00ff00] border-b border-b-[5px] border-b-[#008100] relative leading-[5.5rem] after:content-["おと_が_きりかわった_よ"] after:block after:p-[.25em] after:w-full after:rounded-[0.5rem] after:leading-[2] after:bg-[#fff] after:border after:border-[#919191] after:text-center after:absolute after:top-[100%] after:left-[50%] after:transform-[translate(-50%,-50%)] ${isPlaySound ? 'startMode bg-[#ff9800] border-b-[#935802]' : undefined}`}
             onClick={handleClick}>
             {isPlaySound ? 'Game Start' : 'Change Sound'}
-            <audio src={changeSound}>&nbsp;</audio>
-        </ChangeSoundBtn>
+            <audio src={changeSound} hidden>&nbsp;</audio>
+        </button>
     );
 });
-
-const ChangeSoundBtn = styled.button`
-margin: 0 auto 1em;
-cursor: pointer;
-display: block;
-appearance: none;
-outline: none;
-border: none;
-border-radius: 8px;
-letter-spacing: .25em;
-background-color: #00ff00;
-border-bottom: 5px solid #008100;
-line-height: 8.8rem;
-position: relative;
-
-&::after{
-    content: "おと が きりかわった よ";
-    display: block;
-    padding: .25em;
-    width: 100%;
-    border-radius: 8px;
-    line-height: 2;
-    background-color: #fff;
-    text-align: center;
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    visibility: hidden;
-}
-
-&.startMode {
-    background-color: #ff9800;
-    border-bottom: 5px solid #935802;
-}
-
-&.OnClicked{
-    margin-bottom: 3em;
-
-    &::after{
-        transition: opacity .25s, visibility .25s, transform .5s;
-        transform: translate(-50%, 16%);
-        opacity: 1;
-        visibility: visible;
-    }
-}
-
-& audio{
-    display: none;
-}
-
-@media screen and (min-width: 700px) {
-    line-height: 88px;
-}
-`;

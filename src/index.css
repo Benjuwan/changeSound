@@ -1,42 +1,94 @@
-@charset "utf-8";
+@import "tailwindcss";
 
-html {
-    font-size: 62.5%;
-    scroll-behavior: smooth;
-    overflow-x: hidden;
-}
-
-* {
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-img {
-    width: 100%;
-    height: auto;
-    vertical-align: bottom;
-}
-
-body {
-    font-family: "Helvetica Neue", "Arial", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Meiryo", sans-serif;
-    background-color: #efefef;
-    overflow-x: hidden;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, .65) 0%, rgba(255, 255, 255, .65) 100%), url(../src/assets/cutes-bgimg-min.png)repeat center top/cover;
-    animation: backgroundImgMove linear infinite 99s alternate-reverse;
-}
-
-@keyframes backgroundImgMove {
-    0% {
-        background-position: -999px 999px;
+@layer base {
+    body {
+        background: linear-gradient(to bottom, rgba(255, 255, 255, .65) 0%, rgba(255, 255, 255, .65) 100%), url(../src/assets/cutes-bgimg-min.png)repeat center top/cover;
+        animation: backgroundImgMove linear infinite 99s alternate-reverse;
+        scroll-behavior: smooth;
     }
 
-    100% {
-        background-position: 0px 0px;
-    }
-}
+    @keyframes backgroundImgMove {
+        0% {
+            background-position: -999px 999px;
+        }
 
-@media screen and (min-width: 700px) {
-    html {
-        font-size: 100%;
+        100% {
+            background-position: 0px 0px;
+        }
+    }
+
+    .charImgOn {
+        animation: imgAction .5s linear forwards;
+        animation-delay: .5s;
+
+        @keyframes imgAction {
+
+            0%,
+            100% {
+                transform: translateY(0px) scaleY(1)
+            }
+
+            25% {
+                transform: translateY(6px) scaleY(1.05)
+            }
+
+            50% {
+                transform: translateY(12px) scaleY(1.25)
+            }
+        }
+    }
+
+    .ChangeSoundBtn {
+        &::after {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        &.OnClicked {
+            margin-bottom: 3em;
+
+            &::after {
+                transition: opacity .25s, visibility .25s, transform .5s;
+                transform: translate(-50%, 16%);
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+
+    @media screen and (min-width: 700px) {
+        .ContentsWrapper {
+            &.appStart {
+                & .Container {
+                    padding-top: 2em;
+
+                    &.addFlexBox {
+                        display: flex;
+                        flex-flow: row wrap;
+                        justify-content: space-between;
+                        gap: 8%;
+
+                        & .btnCtrlEls,
+                        & figure {
+                            width: 46%;
+                        }
+                    }
+
+                    & .btnCtrlEls {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (min-width:1025px) {
+        .ContentsWrapper {
+            .Container {
+                &.addFlexBox {
+                    gap: 4%;
+                }
+            }
+        }
     }
 }
