@@ -26,7 +26,7 @@ export const ContentSound = memo(() => {
 
     return (
         <section id="soundsSec">
-            <audio src={audioSrcPath} ref={audioRef}>&nbsp;</audio>
+            <audio src={audioSrcPath} ref={audioRef} hidden>&nbsp;</audio>
         </section>
     );
 });

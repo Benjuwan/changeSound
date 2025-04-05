@@ -1,5 +1,4 @@
 import { ChangeEvent, memo, useContext } from "react";
-import styled from "styled-components";
 import { PlaySoundContext } from "../providers/PlaySoundContext";
 import { AudioPlayContext } from "../providers/AudioPlayContext";
 import { GetDataTypeContext } from "../providers/GetDataContext";
@@ -19,7 +18,7 @@ export const SelectDate = memo(() => {
     }
 
     return (
-        <SelectDateEl onChange={changeSelect}>
+        <select className="w-full my-[1em] mx-auto leading-[2] text-[1.25rem] py-[1em] px-[.25em] border border-[#dadada] rounded bg-[#fff] lg:my-0 lg:mb-[1em]" onChange={changeSelect}>
             {isPlaySound &&
                 <option disabled>ここから えらんでね</option>
             }
@@ -27,21 +26,6 @@ export const SelectDate = memo(() => {
             <option value="vehicles">いろいろな のりもの</option>
             <option value="animals-sea">うみ の どうぶつ</option>
             <option value="animals-field">りく の どうぶつ</option>
-        </SelectDateEl>
+        </select>
     );
 });
-
-const SelectDateEl = styled.select`
-width: 100%;
-margin: 1em auto;
-line-height: 2;
-font-size: 1.8rem;
-padding: 1em .25em;
-border: 1px solid #dadada;
-border-radius: 4px;
-background-color: #fff;
-
-@media screen and (min-width: 700px) {
-    font-size: 18px;
-}
-`;
