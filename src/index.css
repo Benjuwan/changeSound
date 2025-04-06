@@ -20,21 +20,21 @@
     .charImgOn {
         animation: imgAction .5s linear forwards;
         animation-delay: .5s;
+    }
 
-        @keyframes imgAction {
+    @keyframes imgAction {
 
-            0%,
-            100% {
-                transform: translateY(0px) scaleY(1)
-            }
+        0%,
+        100% {
+            transform: translateY(0px) scaleY(1)
+        }
 
-            25% {
-                transform: translateY(6px) scaleY(1.05)
-            }
+        25% {
+            transform: translateY(6px) scaleY(1.05)
+        }
 
-            50% {
-                transform: translateY(12px) scaleY(1.25)
-            }
+        50% {
+            transform: translateY(12px) scaleY(1.25)
         }
     }
 
