@@ -22,6 +22,6 @@
 - react-dom@18.3.1
 - react@18.3.1
 - tailwindcss@4.1.3
-- typescript-eslint@8.29.0
+- typescript-eslint@8.29.1
 - typescript@5.6.3
-- vite@6.2.5
+- vite@6.2.6
