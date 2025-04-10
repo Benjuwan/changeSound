@@ -18,7 +18,7 @@ export const SelectDate = memo(() => {
     }
 
     return (
-        <select className="w-full my-[1em] mx-auto leading-[2] text-[1.25rem] py-[1em] px-[.25em] border border-[#dadada] rounded bg-[#fff] lg:my-0 lg:mb-[1em]" onChange={changeSelect}>
+        <select className="w-full my-[1em] mx-auto leading-[2] text-xl py-[1em] px-[.25em] border border-[#dadada] rounded bg-[#fff] lg:my-0 lg:mb-[1em]" onChange={changeSelect}>
             {isPlaySound &&
                 <option disabled>ここから えらんでね</option>
             }

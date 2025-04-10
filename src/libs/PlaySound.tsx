@@ -61,7 +61,7 @@ export const PlaySound = memo(() => {
     return (
         <button type="button"
             id="playBtn"
-            className={`text-[clamp(0.875rem,calc(100vw/56),1.125rem)] w-full rounded not-disabled:hover:brightness-[1.5] not-disabled:hover:border-transparent not-disabled:hover:transform-[translateY(3px)] not-disabled:hover:transition not-disabled:hover:duration-[.25s] active:transition active:duration-[0.25s] active:border-transparent active:transform-[translateY(.25em)] m-auto block appearance-none border-none border-b border-b-[5px] border-b-[#909106] rounded-2 tracking-[.25em] text-[#fff] bg-[#e3e40f] leading-[5.5rem] md:leading-[88px] not-disabled:cursor-pointer disabled:bg-[#dadada] disabled:border-b-transparent disabled:text-[#a7a7a7] ${isAudioPlay ? 'OnPlay bg-[#0f28e4] border-b-[#0a1a91]' : ''}`}
+            className={`text-[clamp(0.875rem,calc(100vw/56),1.125rem)] w-full rounded not-disabled:hover:brightness-[1.5] not-disabled:hover:border-transparent not-disabled:hover:transform-[translateY(3px)] not-disabled:hover:transition not-disabled:hover:duration-[.25s] active:transition active:duration-[0.25s] active:border-transparent active:transform-[translateY(.25em)] m-auto block appearance-none border-none border-b border-b-[5px] border-b-[#909106] rounded-2 tracking-[.25em] text-[#fff] bg-[#e3e40f] leading-[5.5rem] not-disabled:cursor-pointer disabled:bg-[#dadada] disabled:border-b-transparent disabled:text-[#a7a7a7] ${isAudioPlay ? 'OnPlay bg-[#0f28e4] border-b-[#0a1a91]' : ''}`}
             disabled={isPlaySound}
             onClick={playClickEvent}>
             {isAudioPlay ? 'Stop' : 'Play'}

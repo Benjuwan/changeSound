@@ -61,7 +61,7 @@ export const FigureImg = memo(() => {
                 src={isGetDataType.match('english') ? pngData : gifData}
                 alt={`No.${isSrcNumbering}：${isGetFetchDatas[charTxtIndex].kanji}（${isGetFetchDatas[charTxtIndex].hiragana}）の画像またはデフォルメイラスト`}
             />
-            <div id="charTxt" className="text-[1.125rem] tracking-[.25em] mt-[2.5em]">
+            <div id="charTxt" className="text-lg tracking-[.25em] mt-[2.5em]">
                 <p className="pl-[1em] border-b border-b-[#d2d2d2] pb-[1em]"><span className="indent-[-1em] block text-[0.875rem]">ひらがな：</span>{isGetFetchDatas[charTxtIndex].hiragana}</p>
                 <p className="pl-[1em] border-b border-b-[#d2d2d2] pb-[1em]"><span className="indent-[-1em] block text-[0.875rem]">えいご：</span>{isGetFetchDatas[charTxtIndex].english}</p>
                 <p className="pl-[1em]"><span className="indent-[-1em] block text-[0.875rem]">かんじ（漢字）：</span>{isGetFetchDatas[charTxtIndex].kanji}</p>
