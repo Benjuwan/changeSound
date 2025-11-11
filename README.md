@@ -10,19 +10,19 @@
 ホスティングする際は`src\common\isDeploy.ts`ファイルの`isDeploy`変数を`true`に変更する。
 
 ## 技術構成
-- @eslint/js@9.38.0
-- @tailwindcss/vite@4.1.15
+- @eslint/js@9.39.1
+- @tailwindcss/vite@4.1.17
 - @types/react-dom@19.2.2
 - @types/react@19.2.2
-- @vitejs/plugin-react@5.0.4
-- eslint-plugin-react-hooks@7.0.0
+- @vitejs/plugin-react@5.1.0
+- eslint-plugin-react-hooks@7.0.1
 - eslint-plugin-react-refresh@0.4.24
 - eslint-plugin-react@7.37.5
-- eslint@9.38.0
-- globals@16.4.0
+- eslint@9.39.1
+- globals@16.5.0
 - react-dom@19.2.0
 - react@19.2.0
-- tailwindcss@4.1.15
-- typescript-eslint@8.46.2
+- tailwindcss@4.1.17
+- typescript-eslint@8.46.4
 - typescript@5.9.3
-- vite@7.1.11
+- vite@7.2.2
