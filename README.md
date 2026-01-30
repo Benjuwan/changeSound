@@ -13,13 +13,13 @@
 - @eslint/js@9.39.2
 - @tailwindcss/vite@4.1.18
 - @types/react-dom@19.2.3
-- @types/react@19.2.9
+- @types/react@19.2.10
 - @vitejs/plugin-react@5.1.2
 - eslint-plugin-react-hooks@7.0.1
 - eslint-plugin-react-refresh@0.4.26
 - eslint-plugin-react@7.37.5
 - eslint@9.39.2
-- globals@17.1.0
+- globals@17.2.0
 - react-dom@19.2.4
 - react@19.2.4
 - tailwindcss@4.1.18
