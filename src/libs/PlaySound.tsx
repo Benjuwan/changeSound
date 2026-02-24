@@ -54,8 +54,6 @@ export const PlaySound = memo(() => {
     const playClickEvent: () => void = () => {
         /* サウンド（音声データ）再生 */
         RingForSound('#soundsSec audio');
-        /* ボタンクリックでスクロールトップ */
-        window.scrollTo(0, 0);
     }
 
     return (
